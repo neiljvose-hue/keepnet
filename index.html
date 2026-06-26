@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Keepnet — Fishery Management Software</title>
+  <meta name="description" content="Keepnet is the all-in-one management platform for UK fisheries and angling clubs. Online bookings, memberships, match management and more — on a simple flat monthly fee." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:      #0f4c81;
+      --blue-mid:  #1a6fbc;
+      --blue-lt:   #e8f2fc;
+      --green:     #1a9e5c;
+      --dark:      #111827;
+      --mid:       #4b5563;
+      --light:     #f9fafb;
+      --white:     #ffffff;
+      --border:    #e5e7eb;
+      --radius:    12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--dark);
+      background: var(--white);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+    }
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--blue);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+    .logo span { color: var(--blue-mid); }
+    .nav-cta {
+      background: var(--blue);
+      color: var(--white);
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 15px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--blue-mid); }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(160deg, #0a3560 0%, #0f4c81 50%, #1a6fbc 100%);
+      color: var(--white);
+      padding: 96px 24px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.9);
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-size: clamp(36px, 6vw, 64px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      max-width: 800px;
+      margin: 0 auto 24px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: #7dd3fc;
+    }
+    .hero p {
+      font-size: clamp(17px, 2vw, 21px);
+      color: rgba(255,255,255,0.8);
+      max-width: 600px;
+      margin: 0 auto 48px;
+      line-height: 1.6;
+    }
+    .hero-form {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 520px;
+      margin: 0 auto 24px;
+    }
+    .hero-form input {
+      flex: 1;
+      min-width: 240px;
+      padding: 16px 20px;
+      border-radius: 10px;
+      border: 2px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.1);
+      color: var(--white);
+      font-size: 16px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .hero-form input::placeholder { color: rgba(255,255,255,0.5); }
+    .hero-form input:focus { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.15); }
+    .btn-primary {
+      background: #22c55e;
+      color: var(--white);
+      padding: 16px 28px;
+      border-radius: 10px;
+      border: none;
+      font-size: 16px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      white-space: nowrap;
+    }
+    .btn-primary:hover { background: #16a34a; transform: translateY(-1px); }
+    .btn-primary:active { transform: translateY(0); }
+    .hero-note {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+    }
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 64px;
+      padding-top: 48px;
+      border-top: 1px solid rgba(255,255,255,0.15);
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-size: 32px;
+      font-weight: 800;
+      color: #7dd3fc;
+      letter-spacing: -1px;
+    }
+    .stat-label {
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      margin-top: 4px;
+    }
+
+    /* ── SECTION WRAPPER ── */
+    section { padding: 96px 24px; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--blue-mid);
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1.15;
+      color: var(--dark);
+      margin-bottom: 20px;
+    }
+    .section-sub {
+      font-size: 18px;
+      color: var(--mid);
+      max-width: 580px;
+      line-height: 1.6;
+    }
+
+    /* ── PROBLEM ── */
+    .problem { background: var(--light); }
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      margin-top: 56px;
+    }
+    .problem-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+    }
+    .problem-icon {
+      font-size: 28px;
+      margin-bottom: 16px;
+    }
+    .problem-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--dark);
+    }
+    .problem-card p {
+      font-size: 15px;
+      color: var(--mid);
+      line-height: 1.6;
+    }
+
+    /* ── FEATURES ── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+      margin-top: 64px;
+    }
+    .feature-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    .feature-card:hover {
+      box-shadow: 0 8px 32px rgba(15,76,129,0.08);
+      border-color: var(--blue-mid);
+    }
+    .feature-icon {
+      width: 52px;
+      height: 52px;
+      background: var(--blue-lt);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .feature-card h3 {
+      font-size: 19px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--dark);
+    }
+    .feature-card p {
+      font-size: 15px;
+      color: var(--mid);
+      line-height: 1.65;
+    }
+
+    /* ── PRICING ── */
+    .pricing { background: var(--light); }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 64px;
+      align-items: start;
+    }
+    .pricing-card {
+      background: var(--white);
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px;
+      position: relative;
+    }
+    .pricing-card.featured {
+      border-color: var(--blue);
+      box-shadow: 0 8px 40px rgba(15,76,129,0.12);
+    }
+    .pricing-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--blue);
+      color: var(--white);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 16px;
+      border-radius: 100px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .pricing-tier {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--blue-mid);
+      margin-bottom: 8px;
+    }
+    .pricing-desc {
+      font-size: 14px;
+      color: var(--mid);
+      margin-bottom: 24px;
+    }
+    .pricing-price {
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--dark);
+      letter-spacing: -2px;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .pricing-price span { font-size: 20px; font-weight: 500; color: var(--mid); letter-spacing: 0; }
+    .pricing-note {
+      font-size: 13px;
+      color: var(--mid);
+      margin-bottom: 28px;
+    }
+    .pricing-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 24px 0;
+    }
+    .pricing-features { list-style: none; }
+    .pricing-features li {
+      font-size: 15px;
+      color: var(--mid);
+      padding: 8px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .pricing-features li::before {
+      content: '✓';
+      color: var(--green);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .pricing-features li.no::before { content: '–'; color: #d1d5db; }
+    .btn-outline {
+      display: block;
+      width: 100%;
+      text-align: center;
+      margin-top: 32px;
+      padding: 14px;
+      border-radius: 8px;
+      border: 2px solid var(--blue);
+      color: var(--blue);
+      font-weight: 700;
+      font-size: 15px;
+      font-family: inherit;
+      text-decoration: none;
+      cursor: pointer;
+      background: transparent;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-outline:hover { background: var(--blue); color: var(--white); }
+    .btn-filled {
+      display: block;
+      width: 100%;
+      text-align: center;
+      margin-top: 32px;
+      padding: 14px;
+      border-radius: 8px;
+      border: 2px solid var(--blue);
+      background: var(--blue);
+      color: var(--white);
+      font-weight: 700;
+      font-size: 15px;
+      font-family: inherit;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-filled:hover { background: var(--blue-mid); border-color: var(--blue-mid); }
+
+    /* ── COMPARISON ── */
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 56px;
+      font-size: 15px;
+    }
+    .comparison-table th {
+      padding: 14px 20px;
+      background: var(--blue);
+      color: var(--white);
+      font-weight: 700;
+      text-align: left;
+      font-size: 14px;
+    }
+    .comparison-table th:first-child { border-radius: 12px 0 0 0; }
+    .comparison-table th:last-child { border-radius: 0 12px 0 0; }
+    .comparison-table th.highlight { background: #0a3560; }
+    .comparison-table td {
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+      color: var(--mid);
+    }
+    .comparison-table td:first-child { font-weight: 600; color: var(--dark); }
+    .comparison-table td.highlight { background: var(--blue-lt); color: var(--blue); font-weight: 700; }
+    .comparison-table tr:hover td { background: #f8fafc; }
+    .comparison-table tr:hover td.highlight { background: #dbeafe; }
+    .yes { color: var(--green) !important; font-weight: 700 !important; }
+    .no { color: #d1d5db !important; }
+
+    /* ── TESTIMONIAL / QUOTE ── */
+    .quote-section { background: var(--blue); color: var(--white); text-align: center; padding: 80px 24px; }
+    .quote-text {
+      font-size: clamp(22px, 3vw, 32px);
+      font-weight: 700;
+      line-height: 1.4;
+      max-width: 700px;
+      margin: 0 auto 24px;
+      letter-spacing: -0.5px;
+    }
+    .quote-text em { font-style: normal; color: #7dd3fc; }
+    .quote-author { font-size: 15px; color: rgba(255,255,255,0.6); }
+
+    /* ── CTA ── */
+    .cta-section {
+      text-align: center;
+      padding: 96px 24px;
+      background: var(--light);
+    }
+    .cta-section .section-title { max-width: 600px; margin: 0 auto 16px; }
+    .cta-section .section-sub { margin: 0 auto 48px; text-align: center; }
+    .cta-form {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 480px;
+      margin: 0 auto 16px;
+    }
+    .cta-form input {
+      flex: 1;
+      min-width: 220px;
+      padding: 14px 18px;
+      border-radius: 8px;
+      border: 2px solid var(--border);
+      font-size: 16px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .cta-form input:focus { border-color: var(--blue-mid); }
+    .cta-form .btn-primary { padding: 14px 24px; }
+    .cta-note { font-size: 13px; color: var(--mid); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 14px;
+    }
+    footer strong { color: rgba(255,255,255,0.8); }
+
+    /* ── SUCCESS MESSAGE ── */
+    .success-msg {
+      display: none;
+      background: #dcfce7;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+      border-radius: 8px;
+      padding: 14px 20px;
+      font-weight: 600;
+      font-size: 15px;
+      margin-top: 12px;
+      text-align: center;
+    }
+
+    @media (max-width: 640px) {
+      .hero-stats { gap: 24px; }
+      .comparison-table { font-size: 13px; }
+      .comparison-table th, .comparison-table td { padding: 10px 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">keep<span>net</span></a>
+    <a href="#waitlist" class="nav-cta">Join Waitlist</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">🎣 Built for UK Fisheries &amp; Angling Clubs</div>
+  <h1>Run your fishery.<br><em>Not your admin.</em></h1>
+  <p>Keepnet replaces the spreadsheets, cash tins, and WhatsApp groups with one simple platform — online bookings, memberships, match management, and more.</p>
+  <form class="hero-form" onsubmit="handleSignup(event, 'hero')">
+    <input type="email" id="hero-email" placeholder="your@email.com" required />
+    <button type="submit" class="btn-primary">Join the Waitlist</button>
+  </form>
+  <div class="success-msg" id="hero-success">✅ You're on the list! We'll be in touch soon.</div>
+  <p class="hero-note">Free to join. No card required. Launching soon.</p>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">8,000+</div>
+      <div class="stat-label">UK fisheries &amp; angling clubs</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">1M+</div>
+      <div class="stat-label">licensed anglers in England</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">£0</div>
+      <div class="stat-label">transaction markup — ever</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="container">
+    <div class="section-label">The Problem</div>
+    <h2 class="section-title">Running a fishery shouldn't feel like this</h2>
+    <p class="section-sub">Most fisheries and angling clubs are held together with a mix of tools that were never designed for the job.</p>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-icon">📋</div>
+        <h3>Spreadsheet memberships</h3>
+        <p>Tracking renewals, chasing payments, and managing waiting lists manually eats hours every week.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">💷</div>
+        <h3>Cash on the bank</h3>
+        <p>Day ticket cash goes missing, records are incomplete, and HMRC compliance becomes a headache.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">📱</div>
+        <h3>WhatsApp chaos</h3>
+        <p>Match draws, fixture lists, and member comms buried in group chats nobody can find later.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">📂</div>
+        <h3>Paper logbooks</h3>
+        <p>Fish stock records, DBS checks, and incident logs in folders that nobody can find when they're needed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section>
+  <div class="container">
+    <div class="section-label">What Keepnet Does</div>
+    <h2 class="section-title">Everything in one place</h2>
+    <p class="section-sub">Five modules that work together — use one or use them all.</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🎟️</div>
+        <h3>Online Bookings &amp; Day Tickets</h3>
+        <p>Anglers book and pay online, 24/7. They get a QR code — your bailiff scans it on arrival. No cash, no faff, no missed revenue.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🪪</div>
+        <h3>Memberships &amp; Permits</h3>
+        <p>Digital membership cards, automated renewal reminders, online joining, and waiting list management. All in one place.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🏆</div>
+        <h3>Match Management</h3>
+        <p>Digital peg draws, live weigh-in leaderboards, season league tables, and auto-generated match reports.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🐟</div>
+        <h3>Fish Stock &amp; Compliance</h3>
+        <p>Log your stock, track stocking events, record catch returns, and export straight to Environment Agency format. DBS and safeguarding tracking included.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Finance &amp; Reporting</h3>
+        <p>Real-time revenue dashboard, Stripe payouts, treasurer reports, and Xero/QuickBooks exports. Know your numbers at a glance.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📲</div>
+        <h3>Bailiff &amp; Angler Apps</h3>
+        <p>Mobile-first apps built for outdoor use. Bailiffs scan QR codes and sell walk-up tickets. Anglers book, log catches, and follow match results.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section style="background: var(--light);">
+  <div class="container">
+    <div class="section-label">How We Compare</div>
+    <h2 class="section-title">The only platform with a flat fee</h2>
+    <p class="section-sub">Our competitors charge a percentage of every transaction. A fishery taking £10,000/month online pays them up to £500 in fees. Keepnet costs a flat monthly fee — that's it.</p>
+    <div style="overflow-x: auto;">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th class="highlight">Keepnet</th>
+            <th>Clubmate</th>
+            <th>Clubnest</th>
+            <th>iBookFishing</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Flat monthly fee</td>
+            <td class="highlight yes">✓ Yes</td>
+            <td class="no">✗ No</td>
+            <td class="no">Partial</td>
+            <td class="no">✗ No</td>
+          </tr>
+          <tr>
+            <td>Online bookings &amp; payments</td>
+            <td class="highlight yes">✓ Yes</td>
+            <td class="yes">✓ Yes</td>
+            <td class="yes">✓ Yes</td>
+            <td class="yes">✓ Yes</td>
+          </tr>
+          <tr>
+            <td>Membership management</td>
+            <td class="highlight yes">✓ Yes</td>
+            <td class="yes">✓ Yes</td>
+            <td class="yes">✓ Yes</td>
+            <td class="no">✗ No</td>
+          </tr>
+          <tr>
+            <td>Match management</td>
+            <td class="highlight yes">✓ Yes</td>
+            <td class="no">Limited</td>
+            <td class="yes">✓ Yes</td>
+            <td class="no">✗ No</td>
+          </tr>
+          <tr>
+            <td>Fish stock &amp; catch logging</td>
+            <td class="highlight yes">✓ Yes</td>
+            <td class="no">✗ No</td>
+            <td class="no">✗ No</td>
+            <td class="no">✗ No</td>
+          </tr>
+          <tr>
+            <td>EA catch report export</td>
+            <td class="highlight yes">✓ Yes</td>
+            <td class="no">✗ No</td>
+            <td class="no">✗ No</td>
+            <td class="no">✗ No</td>
+          </tr>
+          <tr>
+            <td>DBS &amp; compliance tracking</td>
+            <td class="highlight yes">✓ Yes</td>
+            <td class="no">✗ No</td>
+            <td class="no">Partial</td>
+            <td class="no">✗ No</td>
+          </tr>
+          <tr>
+            <td>Mobile-first design</td>
+            <td class="highlight yes">✓ Yes</td>
+            <td class="no">Partial</td>
+            <td class="no">Partial</td>
+            <td class="no">Partial</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing">
+  <div class="container">
+    <div class="section-label">Pricing</div>
+    <h2 class="section-title">Simple. Flat. Honest.</h2>
+    <p class="section-sub">No percentage fees. No hidden charges. Stripe card processing is passed through at cost — we don't take a cut.</p>
+    <div class="pricing-grid">
+
+      <div class="pricing-card">
+        <div class="pricing-tier">Starter</div>
+        <div class="pricing-desc">Small day-ticket lakes</div>
+        <div class="pricing-price">£79<span>/mo</span></div>
+        <div class="pricing-note">+ Stripe card processing at cost</div>
+        <hr class="pricing-divider" />
+        <ul class="pricing-features">
+          <li>Online peg bookings</li>
+          <li>QR code day tickets</li>
+          <li>Up to 50 memberships</li>
+          <li>Basic revenue dashboard</li>
+          <li>Bailiff mobile app</li>
+          <li class="no">Match management</li>
+          <li class="no">Fish stock module</li>
+          <li class="no">Compliance tracking</li>
+        </ul>
+        <a href="#waitlist" class="btn-outline">Join Waitlist</a>
+      </div>
+
+      <div class="pricing-card featured">
+        <div class="pricing-badge">Most Popular</div>
+        <div class="pricing-tier">Pro</div>
+        <div class="pricing-desc">Commercial fisheries</div>
+        <div class="pricing-price">£179<span>/mo</span></div>
+        <div class="pricing-note">+ Stripe card processing at cost</div>
+        <hr class="pricing-divider" />
+        <ul class="pricing-features">
+          <li>Everything in Starter</li>
+          <li>Unlimited memberships</li>
+          <li>Match management</li>
+          <li>Live weigh-in leaderboards</li>
+          <li>Fish stock &amp; catch logging</li>
+          <li>EA catch report export</li>
+          <li>DBS &amp; compliance tracking</li>
+          <li>Full finance reporting</li>
+        </ul>
+        <a href="#waitlist" class="btn-filled">Join Waitlist</a>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-tier">Club</div>
+        <div class="pricing-desc">Angling clubs &amp; syndicates</div>
+        <div class="pricing-price">£149<span>/mo</span></div>
+        <div class="pricing-note">+ Stripe card processing at cost</div>
+        <hr class="pricing-divider" />
+        <ul class="pricing-features">
+          <li>Unlimited memberships</li>
+          <li>Digital membership cards</li>
+          <li>Match management</li>
+          <li>Committee roles &amp; permissions</li>
+          <li>Fish stock &amp; catch logging</li>
+          <li>DBS &amp; safeguarding tracking</li>
+          <li>Treasurer reports</li>
+          <li>Angling Trust integration</li>
+        </ul>
+        <a href="#waitlist" class="btn-outline">Join Waitlist</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote-section">
+  <p class="quote-text">"The average busy fishery is losing <em>hours every week</em> to admin that software should be handling. Keepnet fixes that."</p>
+  <p class="quote-author">— The Keepnet Team</p>
+</section>
+
+<!-- CTA / WAITLIST -->
+<section class="cta-section" id="waitlist">
+  <div class="container">
+    <div class="section-label">Early Access</div>
+    <h2 class="section-title">Be first to try Keepnet</h2>
+    <p class="section-sub">We're onboarding our founding fisheries now. Join the waitlist and get early access at a special founding member price.</p>
+    <form class="cta-form" onsubmit="handleSignup(event, 'cta')">
+      <input type="email" id="cta-email" placeholder="your@email.com" required />
+      <button type="submit" class="btn-primary">Get Early Access</button>
+    </form>
+    <div class="success-msg" id="cta-success">✅ You're on the list! We'll be in touch soon.</div>
+    <p class="cta-note">No spam. No card required. We'll reach out personally.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>Keepnet</strong> &nbsp;·&nbsp; keepnet.io &nbsp;·&nbsp; Built for UK fisheries &amp; angling clubs &nbsp;·&nbsp; © 2026</p>
+</footer>
+
+<script>
+  // Simple waitlist form — stores emails locally and shows success message
+  // Replace with your email service (Mailchimp, ConvertKit, Resend, etc.) when ready
+  function handleSignup(e, source) {
+    e.preventDefault();
+    const input = document.getElementById(source + '-email');
+    const success = document.getElementById(source + '-success');
+    const email = input.value.trim();
+
+    if (!email) return;
+
+    // Log the signup (replace this with your actual email service API call)
+    console.log('New waitlist signup:', email, 'from:', source);
+
+    // Show success message
+    input.style.display = 'none';
+    e.target.querySelector('button').style.display = 'none';
+    success.style.display = 'block';
+
+    // Also store in localStorage as a fallback
+    const signups = JSON.parse(localStorage.getItem('keepnet_signups') || '[]');
+    signups.push({ email, source, date: new Date().toISOString() });
+    localStorage.setItem('keepnet_signups', JSON.stringify(signups));
+  }
+</script>
+
+</body>
+</html>
