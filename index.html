@@ -749,6 +749,10 @@
     .footer-links a:hover { color: rgba(255,255,255,0.9); }
 
     /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .catch-history-grid, .knowledge-hub-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+      .partnerships-grid { grid-template-columns: 1fr !important; }
+    }
     @media (max-width: 640px) {
       section { padding: 72px 20px; }
       .hero { padding: 100px 20px 60px; }
@@ -883,12 +887,12 @@
       <div class="feature-card">
         <div class="feature-icon">💳</div>
         <h3>Payments & Day Tickets</h3>
-        <p>Sell day tickets, season passes, and event entry online. Funds go directly to your account.</p>
+        <p>Sell day tickets, season passes, and event entry online. Stripe-powered card payments passed through at cost — no Keepnet markup, ever.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">📊</div>
-        <h3>Catch Reports</h3>
-        <p>Members log catches with species, weight, and photos. Build a record of your fishery's history.</p>
+        <div class="feature-icon">🎣</div>
+        <h3>Catch Reports & History</h3>
+        <p>Anglers log catches with species, weight, and photos. Searchable catch history by peg and month drives future bookings — your fishery sells itself.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">📢</div>
@@ -911,6 +915,96 @@
     <img src="https://images.unsplash.com/photo-1604336102823-1a4df72dfa26?w=600&auto=format&fit=crop&q=80" alt="Scenic fishery" loading="lazy" />
   </div>
 </div>
+
+<!-- CATCH HISTORY FEATURE HIGHLIGHT -->
+<section style="background: var(--navy); color: var(--white); padding: 80px 0;">
+  <div class="container catch-history-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;">
+    <div>
+      <div class="section-label" style="color: #7dd3fc;">Catch Reports</div>
+      <h2 class="section-title" style="color: var(--white); margin-bottom: 20px;">Your catch history sells your fishery for you</h2>
+      <p style="color: #cbd5e1; font-size: 17px; line-height: 1.7; margin-bottom: 24px;">When an angler finishes a session, Keepnet emails them at 3pm asking for a catch report. Species, weights, photos, conditions. Those reports build into a searchable public record — so the next angler deciding where to fish on a Saturday can look up your best peg in October, going back 10 years.</p>
+      <p style="color: #cbd5e1; font-size: 17px; line-height: 1.7;">It gets them excited. It builds trust. It books the peg.</p>
+    </div>
+    <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); padding: 32px;">
+      <div style="margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+        <div style="font-weight: 700; color: var(--white); margin-bottom: 4px;">🎣 Lake 2 — Peg 7 — October</div>
+        <div style="color: #94a3b8; font-size: 14px;">Reported by Mark T. · 3 sessions this month</div>
+        <div style="color: #7dd3fc; margin-top: 8px; font-size: 15px;">Common Carp 28lb 4oz · Mirror Carp 19lb · Tench 6lb 8oz</div>
+      </div>
+      <div style="margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+        <div style="font-weight: 700; color: var(--white); margin-bottom: 4px;">🎣 Lake 2 — Peg 7 — October (last year)</div>
+        <div style="color: #94a3b8; font-size: 14px;">Reported by Dave S. · 2 sessions</div>
+        <div style="color: #7dd3fc; margin-top: 8px; font-size: 15px;">Common Carp 31lb 2oz · Bream 9lb 4oz</div>
+      </div>
+      <div style="color: #64748b; font-size: 13px; text-align: center;">Showing 2 of 47 historic reports for this peg</div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERSHIPS & PERKS -->
+<section style="background: var(--light); padding: 80px 0;">
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 48px;">
+      <div class="section-label">Partnerships & Perks</div>
+      <h2 class="section-title">More than software — a platform for the fishing community</h2>
+      <p class="section-sub" style="margin: 0 auto;">Keepnet connects fisheries with the organisations and brands that matter most to them.</p>
+    </div>
+    <div class="partnerships-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;">
+      <div style="background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px;">
+        <div style="font-size: 32px; margin-bottom: 16px;">⚖️</div>
+        <h3 style="font-family: 'Playfair Display', serif; font-size: 20px; margin-bottom: 12px;">Fish Legal Cover</h3>
+        <p style="color: var(--mid); line-height: 1.65;">Pollution incidents. Neighbour disputes. Planning applications. Keepnet members get access to Fish Legal guidance — the specialist legal service for fisheries and angling clubs, with full cost indemnity when cases go further.</p>
+      </div>
+      <div style="background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px;">
+        <div style="font-size: 32px; margin-bottom: 16px;">🏛️</div>
+        <h3 style="font-family: 'Playfair Display', serif; font-size: 20px; margin-bottom: 12px;">Angling Trust Integration</h3>
+        <p style="color: var(--mid); line-height: 1.65;">Keepnet integrates with Angling Trust membership records, giving clubs a seamless link to the UK's national angling body. Keepnet members qualify for exclusive AT partnership discounts.</p>
+      </div>
+      <div style="background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px;">
+        <div style="font-size: 32px; margin-bottom: 16px;">🎁</div>
+        <h3 style="font-family: 'Playfair Display', serif; font-size: 20px; margin-bottom: 12px;">Member Promotions</h3>
+        <p style="color: var(--mid); line-height: 1.65;">Exclusive tackle and bait deals from leading brands — delivered directly to your members via Keepnet. Promotions are huge in the carp and coarse world. We bring the best offers to your anglers, adding tangible value to their membership.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KNOWLEDGE HUB -->
+<section style="background: var(--white); padding: 80px 0; border-top: 1px solid var(--border);">
+  <div class="container knowledge-hub-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;">
+    <div>
+      <div class="section-label">Knowledge Hub</div>
+      <h2 class="section-title" style="margin-bottom: 20px;">Running a fishery is a real business. We treat it like one.</h2>
+      <p style="color: var(--mid); font-size: 17px; line-height: 1.7; margin-bottom: 20px;">The Keepnet Knowledge Hub is a members-only resource covering everything fishery owners actually need to know — beyond the software. Practical, specific, and built with input from experienced operators.</p>
+      <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 12px;">
+        <li style="display: flex; gap: 12px; align-items: flex-start;"><span style="color: var(--green); font-weight: 700; flex-shrink: 0;">✓</span><span style="color: var(--mid);">Cashflow management and seasonal revenue planning</span></li>
+        <li style="display: flex; gap: 12px; align-items: flex-start;"><span style="color: var(--green); font-weight: 700; flex-shrink: 0;">✓</span><span style="color: var(--mid);">Otter fencing, cormorant management, and wildlife biosecurity</span></li>
+        <li style="display: flex; gap: 12px; align-items: flex-start;"><span style="color: var(--green); font-weight: 700; flex-shrink: 0;">✓</span><span style="color: var(--mid);">HMRC compliance and tax guidance for fishery businesses</span></li>
+        <li style="display: flex; gap: 12px; align-items: flex-start;"><span style="color: var(--green); font-weight: 700; flex-shrink: 0;">✓</span><span style="color: var(--mid);">Handling antisocial behaviour and venue security</span></li>
+        <li style="display: flex; gap: 12px; align-items: flex-start;"><span style="color: var(--green); font-weight: 700; flex-shrink: 0;">✓</span><span style="color: var(--mid);">Vetted supplier directory — equipment, feed, aeration, signage</span></li>
+        <li style="display: flex; gap: 12px; align-items: flex-start;"><span style="color: var(--green); font-weight: 700; flex-shrink: 0;">✓</span><span style="color: var(--mid);">Legal templates for fishery rules, membership agreements, and liability</span></li>
+      </ul>
+    </div>
+    <div style="background: var(--navy); border-radius: var(--radius); padding: 40px; color: var(--white);">
+      <div style="font-size: 14px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: #7dd3fc; margin-bottom: 24px;">From the Hub</div>
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <div style="padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+          <div style="font-weight: 600; margin-bottom: 6px;">How to price your day tickets for 2025</div>
+          <div style="color: #94a3b8; font-size: 14px;">A practical guide to benchmarking your prices against comparable venues and adjusting for demand.</div>
+        </div>
+        <div style="padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1);">
+          <div style="font-weight: 600; margin-bottom: 6px;">Otter fencing — what works and what doesn't</div>
+          <div style="color: #94a3b8; font-size: 14px;">Real-world review of fencing types, installation costs, and which suppliers our members recommend.</div>
+        </div>
+        <div>
+          <div style="font-weight: 600; margin-bottom: 6px;">Managing alcohol and antisocial behaviour at carp lakes</div>
+          <div style="color: #94a3b8; font-size: 14px;">Policies, signage, and enforcement approaches that work — from fishery owners who've dealt with it.</div>
+        </div>
+      </div>
+      <div style="margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); color: #64748b; font-size: 13px;">Available to Pro and Club subscribers</div>
+    </div>
+  </div>
+</section>
 
 <!-- HOW IT WORKS -->
 <section class="how" id="how-it-works">
