@@ -790,33 +790,42 @@
   <p><strong>Keepnet</strong> &nbsp;·&nbsp; keepnet.io &nbsp;·&nbsp; Built for UK fisheries &amp; angling clubs &nbsp;·&nbsp; © 2026</p>
 </footer>
 
-<script>
-  const BREVO_FORM = 'https://cc504813.sibforms.com/serve/MUIFAMVyi9T9mqOaoiSHLcznXnS6NBNKfyKQprWyi1FFezGGBb9P4R8rK2yP8J38';
+<iframe name="hidden_iframe" style="display:none"></iframe>
 
-  async function handleSignup(e, source) {
+<script>
+  const GF_ACTION = ‘https://docs.google.com/forms/u/0/d/e/1FAIpQLSfV7dY-6GWlG4LTBDf25zxj84BSOetxGtlG1LyCWqKxZHNuqw/formResponse’;
+
+  function handleSignup(e, source) {
     e.preventDefault();
-    const input = document.getElementById(source + '-email');
-    const success = document.getElementById(source + '-success');
-    const btn = e.target.querySelector('button');
+    const input = document.getElementById(source + ‘-email’);
+    const success = document.getElementById(source + ‘-success’);
+    const btn = e.target.querySelector(‘button’);
     const email = input.value.trim();
     if (!email) return;
 
-    btn.textContent = 'Joining…';
+    btn.textContent = ‘Joining…’;
     btn.disabled = true;
 
-    const form = new FormData();
-    form.append('EMAIL', email);
-    form.append('email_address_check', '');
-    form.append('locale', 'en');
+    // Submit to Google Forms via hidden iframe (works cross-origin, no API key needed)
+    const form = document.createElement(‘form’);
+    form.action = GF_ACTION;
+    form.method = ‘POST’;
+    form.target = ‘hidden_iframe’;
 
-    try {
-      await fetch(BREVO_FORM, { method: 'POST', body: form, mode: 'no-cors' });
-    } catch (_) {}
+    const field = document.createElement(‘input’);
+    field.type = ‘hidden’;
+    field.name = ‘entry.589490959’;
+    field.value = email;
+    form.appendChild(field);
 
-    // Always show success — no-cors means we can’t read the response
-    input.style.display = 'none';
-    btn.style.display = 'none';
-    success.style.display = 'block';
+    document.body.appendChild(form);
+    form.submit();
+    document.body.removeChild(form);
+
+    // Show success (response goes to hidden iframe so page doesn’t navigate)
+    input.style.display = ‘none’;
+    btn.style.display = ‘none’;
+    success.style.display = ‘block’;
   }
 </script>
 
