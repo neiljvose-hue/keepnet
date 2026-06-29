@@ -3,260 +3,130 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>What's Coming — KeepNet</title>
-  <meta name="description" content="A look at what KeepNet is building next for UK commercial fisheries." />
+  <title>KeepNet — Coming Soon</title>
+  <meta name="description" content="KeepNet — bookings and payments built for UK commercial fisheries. Coming soon." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --navy: #0a2e52;
-      --blue: #0f4c81;
-      --blue-mid: #1a6fbc;
-      --green: #1a9e5c;
-      --green-lt: #d1fae5;
-      --amber: #d97706;
-      --amber-lt: #fef3c7;
-      --mid: #475569;
-      --light: #f8fafc;
-      --border: #e2e8f0;
-      --radius: 14px;
+    html, body { height: 100%; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0a2e52;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 40px 24px;
+      text-align: center;
     }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; background: var(--light); color: #0f172a; }
 
-    /* NAV */
-    nav { background: var(--navy); padding: 18px 32px; display: flex; align-items: center; justify-content: space-between; }
-    .nav-logo { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 800; color: white; text-decoration: none; letter-spacing: -0.5px; }
-    .nav-logo span { color: #4ade80; }
-    .nav-cta { background: #4ade80; color: var(--navy); font-weight: 700; font-size: 14px; padding: 10px 22px; border-radius: 50px; text-decoration: none; }
-
-    /* HERO */
-    .hero { background: var(--navy); color: white; padding: clamp(64px, 10vw, 120px) 32px clamp(48px, 8vw, 96px); text-align: center; }
-    .hero-label { font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #4ade80; margin-bottom: 20px; }
-    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(32px, 6vw, 58px); font-weight: 800; line-height: 1.15; margin-bottom: 20px; }
-    .hero h1 em { font-style: normal; color: #7dd3fc; }
-    .hero p { font-size: clamp(16px, 2vw, 19px); color: rgba(255,255,255,0.65); max-width: 600px; margin: 0 auto 40px; line-height: 1.75; }
-    .hero-note { font-size: 13px; color: rgba(255,255,255,0.4); margin-top: 16px; }
-
-    /* TIMELINE */
-    .timeline-section { max-width: 860px; margin: 0 auto; padding: clamp(48px, 8vw, 96px) 24px; }
-    .phase { margin-bottom: 56px; }
-    .phase-header { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
-    .phase-tag { font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 5px 14px; border-radius: 50px; white-space: nowrap; }
-    .phase-tag.now { background: var(--green-lt); color: var(--green); }
-    .phase-tag.next { background: #dbeafe; color: #1d4ed8; }
-    .phase-tag.later { background: var(--amber-lt); color: var(--amber); }
-    .phase-title { font-family: 'Playfair Display', serif; font-size: clamp(20px, 3vw, 26px); font-weight: 800; color: var(--navy); }
-    .feature-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
-    .feature-card {
-      background: white; border: 1px solid var(--border); border-radius: var(--radius);
-      padding: 24px 22px; position: relative;
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 8vw, 60px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: white;
+      margin-bottom: 28px;
     }
-    .feature-card.done { border-color: var(--green); }
-    .feature-card.done::before {
-      content: '✓ Live'; position: absolute; top: 16px; right: 16px;
-      font-size: 11px; font-weight: 700; color: var(--green); background: var(--green-lt);
-      padding: 3px 10px; border-radius: 50px;
-    }
-    .feature-card.building::before {
-      content: 'Building'; position: absolute; top: 16px; right: 16px;
-      font-size: 11px; font-weight: 700; color: #1d4ed8; background: #dbeafe;
-      padding: 3px 10px; border-radius: 50px;
-    }
-    .feature-card.planned::before {
-      content: 'Planned'; position: absolute; top: 16px; right: 16px;
-      font-size: 11px; font-weight: 700; color: var(--amber); background: var(--amber-lt);
-      padding: 3px 10px; border-radius: 50px;
-    }
-    .feature-icon { font-size: 28px; margin-bottom: 12px; }
-    .feature-card h3 { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 8px; padding-right: 56px; }
-    .feature-card p { font-size: 14px; color: var(--mid); line-height: 1.65; }
+    .logo span { color: #4ade80; }
 
-    /* DIVIDER */
-    .phase-divider { border: none; border-top: 2px dashed var(--border); margin: 0 0 56px; }
-
-    /* WAITLIST */
-    .waitlist-section {
-      background: var(--navy); color: white; text-align: center;
-      padding: clamp(48px, 8vw, 96px) 24px;
+    .tagline {
+      font-size: clamp(15px, 3vw, 19px);
+      color: rgba(255,255,255,0.55);
+      line-height: 1.7;
+      max-width: 420px;
+      margin-bottom: 48px;
     }
-    .waitlist-section h2 { font-family: 'Playfair Display', serif; font-size: clamp(26px, 4vw, 38px); font-weight: 800; margin-bottom: 14px; }
-    .waitlist-section p { font-size: 16px; color: rgba(255,255,255,0.6); max-width: 480px; margin: 0 auto 36px; line-height: 1.7; }
-    .waitlist-form { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; max-width: 480px; margin: 0 auto; }
-    .waitlist-form input { flex: 1; min-width: 220px; padding: 14px 20px; border-radius: 50px; border: none; font-size: 15px; outline: none; }
-    .waitlist-form button { background: #4ade80; color: var(--navy); font-weight: 800; font-size: 15px; padding: 14px 28px; border-radius: 50px; border: none; cursor: pointer; white-space: nowrap; }
-    .waitlist-note { font-size: 13px; color: rgba(255,255,255,0.35); margin-top: 16px; }
 
-    /* FOOTER */
-    footer { background: #060f1a; color: rgba(255,255,255,0.4); text-align: center; padding: 28px 24px; font-size: 13px; }
-    footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
-
-    @media (max-width: 640px) {
-      nav { padding: 16px 20px; }
-      .feature-grid { grid-template-columns: 1fr; }
+    .form {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: 440px;
+      width: 100%;
     }
+    .form input {
+      flex: 1;
+      min-width: 220px;
+      padding: 15px 22px;
+      border-radius: 50px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.08);
+      color: white;
+      font-size: 15px;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+    }
+    .form input::placeholder { color: rgba(255,255,255,0.35); }
+    .form input:focus { border-color: rgba(255,255,255,0.35); background: rgba(255,255,255,0.12); }
+    .form button {
+      background: #4ade80;
+      color: #0a2e52;
+      font-weight: 800;
+      font-size: 15px;
+      padding: 15px 28px;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: opacity 0.15s;
+    }
+    .form button:hover { opacity: 0.9; }
+
+    .confirm {
+      display: none;
+      color: #4ade80;
+      font-weight: 600;
+      font-size: 15px;
+      margin-top: 4px;
+    }
+
+    .note {
+      margin-top: 20px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.25);
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 24px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.2);
+    }
+    .footer a { color: rgba(255,255,255,0.3); text-decoration: none; }
   </style>
 </head>
 <body>
 
-<nav>
-  <a href="/" class="nav-logo">Keep<span>Net</span></a>
-  <a href="/#waitlist" class="nav-cta">Join Waitlist</a>
-</nav>
+  <div class="logo">Keep<span>Net</span></div>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-label">Product Roadmap</div>
-  <h1>We're building this<br><em>with fishery owners.</em></h1>
-  <p>KeepNet is in early access. Here's what's live, what we're building right now, and what's coming next. Founding members get direct input into the order.</p>
-  <a href="/#waitlist" style="display:inline-block;background:#4ade80;color:#0a2e52;font-weight:800;font-size:16px;padding:16px 40px;border-radius:50px;text-decoration:none;">Get early access</a>
-  <p class="hero-note">Free during beta · Founding member rate locked in</p>
-</section>
+  <p class="tagline">
+    The bookings and payments platform built for UK commercial fisheries.<br>
+    Launching Summer 2026.
+  </p>
 
-<!-- TIMELINE -->
-<section class="timeline-section">
-
-  <!-- PHASE 1: NOW -->
-  <div class="phase">
-    <div class="phase-header">
-      <span class="phase-tag now">Now — Beta</span>
-      <h2 class="phase-title">The core platform</h2>
-    </div>
-    <div class="feature-grid">
-      <div class="feature-card done">
-        <div class="feature-icon">📅</div>
-        <h3>Online Bookings</h3>
-        <p>Live peg availability, online payment, and instant confirmations. No phone tag, no double-bookings.</p>
-      </div>
-      <div class="feature-card done">
-        <div class="feature-icon">💳</div>
-        <h3>Stripe Payments</h3>
-        <p>Card, Apple Pay and Google Pay. Passed through at cost — no KeepNet markup, ever.</p>
-      </div>
-      <div class="feature-card done">
-        <div class="feature-icon">📲</div>
-        <h3>QR Ticket Scanning</h3>
-        <p>Anglers receive a unique QR ticket by email. Bailiffs scan at the bankside from any smartphone.</p>
-      </div>
-      <div class="feature-card done">
-        <div class="feature-icon">👥</div>
-        <h3>Customer Records</h3>
-        <p>A simple record for every angler who books — history, visits, notes.</p>
-      </div>
-      <div class="feature-card done">
-        <div class="feature-icon">🎣</div>
-        <h3>Catch Reports</h3>
-        <p>Automated 3pm prompt after every session. Species, weight, photos. Builds your searchable history.</p>
-      </div>
-      <div class="feature-card done">
-        <div class="feature-icon">📊</div>
-        <h3>Owner Dashboard</h3>
-        <p>All bookings, revenue and upcoming sessions in one view before you leave the car park.</p>
-      </div>
-    </div>
-  </div>
-
-  <hr class="phase-divider" />
-
-  <!-- PHASE 2: NEXT -->
-  <div class="phase">
-    <div class="phase-header">
-      <span class="phase-tag next">Next — Summer 2026</span>
-      <h2 class="phase-title">Making it smarter</h2>
-    </div>
-    <div class="feature-grid">
-      <div class="feature-card building">
-        <div class="feature-icon">🗺️</div>
-        <h3>Interactive Peg Maps</h3>
-        <p>Anglers see and choose their exact peg on a map when booking. No confusion, no disputes at the bankside.</p>
-      </div>
-      <div class="feature-card building">
-        <div class="feature-icon">📋</div>
-        <h3>Waiting Lists</h3>
-        <p>Auto-fill cancellations from a waiting list. Popular pegs fill instantly — you do nothing.</p>
-      </div>
-      <div class="feature-card building">
-        <div class="feature-icon">📱</div>
-        <h3>Bailiff App</h3>
-        <p>A dedicated mobile view for bailiffs — scan queue, session list, flag issues, log incidents.</p>
-      </div>
-      <div class="feature-card planned">
-        <div class="feature-icon">🏆</div>
-        <h3>Match Management</h3>
-        <p>Draw pegs, run results, publish leaderboards. For fisheries that run regular matches and competitions.</p>
-      </div>
-      <div class="feature-card planned">
-        <div class="feature-icon">💬</div>
-        <h3>Angler Messaging</h3>
-        <p>Send session reminders, weather alerts, and fishery updates directly to booked anglers.</p>
-      </div>
-      <div class="feature-card planned">
-        <div class="feature-icon">🎁</div>
-        <h3>Membership Tiers</h3>
-        <p>Season tickets, club memberships and syndicate access — managed and renewed automatically.</p>
-      </div>
-    </div>
-  </div>
-
-  <hr class="phase-divider" />
-
-  <!-- PHASE 3: LATER -->
-  <div class="phase">
-    <div class="phase-header">
-      <span class="phase-tag later">Later — 2027</span>
-      <h2 class="phase-title">The bigger picture</h2>
-    </div>
-    <div class="feature-grid">
-      <div class="feature-card planned">
-        <div class="feature-icon">🔍</div>
-        <h3>Angler Discovery</h3>
-        <p>Anglers find your fishery through KeepNet's public catch map — searchable by species, region, and peg record.</p>
-      </div>
-      <div class="feature-card planned">
-        <div class="feature-icon">⚖️</div>
-        <h3>Legal & Compliance Tools</h3>
-        <p>Rod licence checks, pollution incident logging, and access to specialist fishery legal support.</p>
-      </div>
-      <div class="feature-card planned">
-        <div class="feature-icon">🎣</div>
-        <h3>Tackle & Bait Partnerships</h3>
-        <p>Exclusive deals for KeepNet subscribers from leading UK carp and coarse brands.</p>
-      </div>
-      <div class="feature-card planned">
-        <div class="feature-icon">📈</div>
-        <h3>Revenue Analytics</h3>
-        <p>Seasonal trends, peg performance, and booking patterns — so you know where to invest next season.</p>
-      </div>
-    </div>
-  </div>
-
-</section>
-
-<!-- WAITLIST -->
-<section class="waitlist-section" id="waitlist">
-  <h2>Shape what gets built next.</h2>
-  <p>Founding members get direct input into the roadmap. Tell us what your fishery needs most.</p>
-  <form class="waitlist-form" onsubmit="handleSubmit(event)">
-    <input type="email" id="wl-email" placeholder="your@email.com" required />
-    <button type="submit">Join the waitlist</button>
+  <form class="form" onsubmit="handleSubmit(event)">
+    <input type="email" id="email" placeholder="your@email.com" required />
+    <button type="submit">Get early access</button>
   </form>
-  <p id="wl-confirm" style="display:none;color:#4ade80;font-weight:600;margin-top:16px;">✓ You're on the list. We'll be in touch.</p>
-  <p class="waitlist-note">Free during beta · No credit card required · Unsubscribe anytime</p>
-</section>
+  <p class="confirm" id="confirm">✓ You're on the list. We'll be in touch.</p>
+  <p class="note">No spam. Unsubscribe anytime.</p>
 
-<footer>
-  <p><a href="/">← Back to KeepNet</a> &nbsp;·&nbsp; © 2026 KeepNet &nbsp;·&nbsp; <a href="mailto:hello@keepnet.io">hello@keepnet.io</a></p>
-</footer>
+  <p class="footer"><a href="mailto:hello@keepnet.io">hello@keepnet.io</a></p>
 
-<script>
-function handleSubmit(e) {
-  e.preventDefault();
-  document.querySelector('.waitlist-form').style.display = 'none';
-  document.getElementById('wl-confirm').style.display = 'block';
-}
-</script>
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      document.querySelector('.form').style.display = 'none';
+      document.getElementById('confirm').style.display = 'block';
+      document.querySelector('.note').style.display = 'none';
+    }
+  </script>
 
 </body>
 </html>
