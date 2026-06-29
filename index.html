@@ -3,1295 +3,259 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KeepNet — Bookings & Payments for Commercial Fisheries</title>
-  <meta name="description" content="KeepNet is the simple bookings and payments platform built for commercial coarse and carp fisheries. Online bookings, QR tickets, catch reports — on one flat monthly fee." />
+  <title>What's Coming — KeepNet</title>
+  <meta name="description" content="A look at what KeepNet is building next for UK commercial fisheries." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&family=Raleway:wght@700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     :root {
-      --navy:      #0a2e52;
-      --blue:      #0f4c81;
-      --blue-mid:  #1a6fbc;
-      --blue-lt:   #e8f2fc;
-      --green:     #1a9e5c;
-      --green-lt:  #d1fae5;
-      --amber:     #d97706;
-      --dark:      #0f172a;
-      --mid:       #475569;
-      --light:     #f8fafc;
-      --white:     #ffffff;
-      --border:    #e2e8f0;
-      --radius:    14px;
+      --navy: #0a2e52;
+      --blue: #0f4c81;
+      --blue-mid: #1a6fbc;
+      --green: #1a9e5c;
+      --green-lt: #d1fae5;
+      --amber: #d97706;
+      --amber-lt: #fef3c7;
+      --mid: #475569;
+      --light: #f8fafc;
+      --border: #e2e8f0;
+      --radius: 14px;
     }
-
     html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--light); color: #0f172a; }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      color: var(--dark);
-      background: var(--white);
-      line-height: 1.6;
-      font-size: 16px;
-    }
+    /* NAV */
+    nav { background: var(--navy); padding: 18px 32px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 800; color: white; text-decoration: none; letter-spacing: -0.5px; }
+    .nav-logo span { color: #4ade80; }
+    .nav-cta { background: #4ade80; color: var(--navy); font-weight: 700; font-size: 14px; padding: 10px 22px; border-radius: 50px; text-decoration: none; }
 
-    /* ── NAV ── */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      background: rgba(10, 46, 82, 0.92);
-      backdrop-filter: blur(12px);
-      padding: 0 24px;
-    }
-    .nav-inner {
-      max-width: 1140px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 68px;
-    }
-    .logo {
-      font-family: 'Raleway', sans-serif;
-      font-size: 20px;
-      font-weight: 900;
-      color: var(--white);
-      text-decoration: none;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-    }
-    .logo span { color: #7dd3fc; }
-    .nav-cta {
-      background: var(--green);
-      color: var(--white);
-      padding: 10px 22px;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 15px;
-      text-decoration: none;
-      transition: background 0.2s, transform 0.1s;
-    }
-    .nav-cta:hover { background: #16a34a; transform: translateY(-1px); }
+    /* HERO */
+    .hero { background: var(--navy); color: white; padding: clamp(64px, 10vw, 120px) 32px clamp(48px, 8vw, 96px); text-align: center; }
+    .hero-label { font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #4ade80; margin-bottom: 20px; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(32px, 6vw, 58px); font-weight: 800; line-height: 1.15; margin-bottom: 20px; }
+    .hero h1 em { font-style: normal; color: #7dd3fc; }
+    .hero p { font-size: clamp(16px, 2vw, 19px); color: rgba(255,255,255,0.65); max-width: 600px; margin: 0 auto 40px; line-height: 1.75; }
+    .hero-note { font-size: 13px; color: rgba(255,255,255,0.4); margin-top: 16px; }
 
-    /* ── HERO ── */
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 120px 24px 80px;
-      overflow: hidden;
-      color: var(--white);
-    }
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background-image: url('https://images.pexels.com/photos/14249397/pexels-photo-14249397.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=1');
-      background-size: cover;
-      background-position: center;
-      filter: brightness(0.45);
-    }
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 820px;
-    }
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.22);
-      color: rgba(255,255,255,0.92);
-      padding: 7px 18px;
-      border-radius: 100px;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.4px;
-      text-transform: uppercase;
-      margin-bottom: 32px;
-    }
-    .hero-badge::before {
-      content: '';
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: #4ade80;
-      box-shadow: 0 0 0 3px rgba(74,222,128,0.3);
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 0 3px rgba(74,222,128,0.3); }
-      50% { box-shadow: 0 0 0 6px rgba(74,222,128,0.1); }
-    }
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(38px, 6vw, 70px);
-      font-weight: 800;
-      line-height: 1.08;
-      letter-spacing: -1px;
-      margin-bottom: 28px;
-    }
-    .hero h1 em {
-      font-style: italic;
-      color: #7dd3fc;
-    }
-    .hero-sub {
-      font-size: clamp(17px, 2vw, 20px);
-      color: rgba(255,255,255,0.78);
-      max-width: 560px;
-      margin: 0 auto 52px;
-      line-height: 1.65;
-    }
-    .hero-form {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      flex-wrap: wrap;
-      max-width: 520px;
-      margin: 0 auto 20px;
-    }
-    .hero-form input {
-      flex: 1;
-      min-width: 240px;
-      padding: 17px 20px;
-      border-radius: 10px;
-      border: 2px solid rgba(255,255,255,0.2);
-      background: rgba(255,255,255,0.1);
-      color: var(--white);
-      font-size: 16px;
-      font-family: inherit;
-      outline: none;
-      transition: border-color 0.2s, background 0.2s;
-    }
-    .hero-form input::placeholder { color: rgba(255,255,255,0.45); }
-    .hero-form input:focus { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.15); }
-    .btn-primary {
-      background: var(--green);
-      color: var(--white);
-      padding: 17px 30px;
-      border-radius: 10px;
-      border: none;
-      font-size: 16px;
-      font-weight: 700;
-      font-family: inherit;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.1s;
-      white-space: nowrap;
-    }
-    .btn-primary:hover { background: #16a34a; transform: translateY(-1px); }
-    .btn-primary:active { transform: translateY(0); }
-    .hero-note {
-      font-size: 13px;
-      color: rgba(255,255,255,0.45);
-    }
-    .hero-success {
-      display: none;
-      background: rgba(74,222,128,0.15);
-      border: 1px solid rgba(74,222,128,0.4);
-      color: #4ade80;
-      padding: 14px 24px;
-      border-radius: 10px;
-      font-weight: 600;
-      font-size: 15px;
-    }
-    .hero-scroll {
-      position: absolute;
-      bottom: 36px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      color: rgba(255,255,255,0.45);
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-    .scroll-line {
-      width: 1px;
-      height: 40px;
-      background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
-      animation: scrollDown 1.8s ease-in-out infinite;
-    }
-    @keyframes scrollDown {
-      0% { transform: scaleY(0); transform-origin: top; }
-      50% { transform: scaleY(1); transform-origin: top; }
-      51% { transform: scaleY(1); transform-origin: bottom; }
-      100% { transform: scaleY(0); transform-origin: bottom; }
-    }
-
-    /* ── SOCIAL PROOF STRIP ── */
-    .trust-strip {
-      background: var(--navy);
-      color: rgba(255,255,255,0.7);
-      padding: 20px 24px;
-      text-align: center;
-      font-size: 14px;
-    }
-    .trust-strip strong { color: rgba(255,255,255,0.9); }
-
-    /* ── SECTION BASE ── */
-    section { padding: 100px 24px; }
-    .container { max-width: 1140px; margin: 0 auto; }
-    .section-label {
-      display: inline-block;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--blue-mid);
-      background: var(--blue-lt);
-      padding: 5px 14px;
-      border-radius: 100px;
-      margin-bottom: 20px;
-    }
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(28px, 4vw, 44px);
-      font-weight: 800;
-      line-height: 1.12;
-      letter-spacing: -0.5px;
-      color: var(--dark);
-      margin-bottom: 20px;
-    }
-    .section-sub {
-      font-size: 18px;
-      color: var(--mid);
-      max-width: 560px;
-      line-height: 1.65;
-    }
-
-    /* ── PROBLEM ── */
-    .problem { background: var(--light); }
-    .problem-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-    @media (max-width: 768px) {
-      .problem-inner { grid-template-columns: 1fr; gap: 48px; }
-    }
-    .problem-image {
-      position: relative;
-      border-radius: 20px;
-      overflow: hidden;
-      aspect-ratio: 4/3;
-      box-shadow: 0 24px 64px rgba(10,46,82,0.2);
-    }
-    .problem-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .problem-image-badge {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      background: rgba(10,46,82,0.85);
-      backdrop-filter: blur(8px);
-      color: white;
-      padding: 12px 18px;
-      border-radius: 12px;
-      font-size: 13px;
-      font-weight: 600;
-      border: 1px solid rgba(255,255,255,0.15);
-    }
-    .problem-image-badge span {
-      display: block;
-      font-size: 22px;
-      font-weight: 800;
-      color: #7dd3fc;
-      margin-bottom: 2px;
-    }
-    .problem-list {
-      list-style: none;
-      margin-top: 40px;
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
-    .problem-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      padding: 20px;
-      background: var(--white);
-      border-radius: 12px;
-      border: 1px solid var(--border);
-    }
-    .problem-list li .icon {
-      font-size: 22px;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
-    .problem-list li strong {
-      display: block;
-      font-size: 15px;
-      color: var(--dark);
-      margin-bottom: 4px;
-    }
-    .problem-list li p {
-      font-size: 14px;
-      color: var(--mid);
-      line-height: 1.5;
-      margin: 0;
-    }
-
-    /* ── FEATURES ── */
-    .features-hero {
-      position: relative;
-      border-radius: 24px;
-      overflow: hidden;
-      height: 360px;
-      margin-bottom: 64px;
-      box-shadow: 0 24px 64px rgba(10,46,82,0.15);
-    }
-    .features-hero img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .features-hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to right, rgba(10,46,82,0.85) 0%, rgba(10,46,82,0.2) 100%);
-      display: flex;
-      align-items: center;
-      padding: 48px;
-    }
-    .features-hero-text {
-      color: white;
-      max-width: 420px;
-    }
-    .features-hero-text h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(22px, 3vw, 32px);
-      font-weight: 800;
-      line-height: 1.2;
-      margin-bottom: 12px;
-    }
-    .features-hero-text p {
-      font-size: 15px;
-      color: rgba(255,255,255,0.75);
-      line-height: 1.6;
-    }
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 28px;
-    }
+    /* TIMELINE */
+    .timeline-section { max-width: 860px; margin: 0 auto; padding: clamp(48px, 8vw, 96px) 24px; }
+    .phase { margin-bottom: 56px; }
+    .phase-header { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
+    .phase-tag { font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 5px 14px; border-radius: 50px; white-space: nowrap; }
+    .phase-tag.now { background: var(--green-lt); color: var(--green); }
+    .phase-tag.next { background: #dbeafe; color: #1d4ed8; }
+    .phase-tag.later { background: var(--amber-lt); color: var(--amber); }
+    .phase-title { font-family: 'Playfair Display', serif; font-size: clamp(20px, 3vw, 26px); font-weight: 800; color: var(--navy); }
+    .feature-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
     .feature-card {
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 32px;
-      transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s;
-      background: var(--white);
+      background: white; border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 24px 22px; position: relative;
     }
-    .feature-card:hover {
-      box-shadow: 0 12px 40px rgba(15,76,129,0.1);
-      border-color: var(--blue-mid);
-      transform: translateY(-2px);
+    .feature-card.done { border-color: var(--green); }
+    .feature-card.done::before {
+      content: '✓ Live'; position: absolute; top: 16px; right: 16px;
+      font-size: 11px; font-weight: 700; color: var(--green); background: var(--green-lt);
+      padding: 3px 10px; border-radius: 50px;
     }
-    .feature-icon {
-      width: 52px;
-      height: 52px;
-      background: var(--blue-lt);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      margin-bottom: 20px;
+    .feature-card.building::before {
+      content: 'Building'; position: absolute; top: 16px; right: 16px;
+      font-size: 11px; font-weight: 700; color: #1d4ed8; background: #dbeafe;
+      padding: 3px 10px; border-radius: 50px;
     }
-    .feature-card h3 {
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 10px;
-      color: var(--dark);
+    .feature-card.planned::before {
+      content: 'Planned'; position: absolute; top: 16px; right: 16px;
+      font-size: 11px; font-weight: 700; color: var(--amber); background: var(--amber-lt);
+      padding: 3px 10px; border-radius: 50px;
     }
-    .feature-card p {
-      font-size: 15px;
-      color: var(--mid);
-      line-height: 1.65;
-    }
+    .feature-icon { font-size: 28px; margin-bottom: 12px; }
+    .feature-card h3 { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 8px; padding-right: 56px; }
+    .feature-card p { font-size: 14px; color: var(--mid); line-height: 1.65; }
 
-    /* ── HOW IT WORKS ── */
-    .how { background: var(--navy); color: var(--white); position: relative; overflow: hidden; }
-    .how::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: url('https://images.unsplash.com/photo-1596796571148-77b6e70dd6b6?w=1600&auto=format&fit=crop&q=80');
-      background-size: cover;
-      background-position: center;
-      opacity: 0.12;
-    }
-    .how .container { position: relative; z-index: 1; }
-    .how .section-label { background: rgba(255,255,255,0.1); color: #7dd3fc; }
-    .how .section-title { color: var(--white); }
-    .how .section-sub { color: rgba(255,255,255,0.65); }
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 48px;
-      margin-top: 64px;
-    }
-    @media (max-width: 768px) {
-      .steps { grid-template-columns: 1fr; gap: 36px; }
-    }
-    .step {
-      position: relative;
-      padding-top: 20px;
-    }
-    .step-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 72px;
-      font-weight: 800;
-      color: rgba(125, 211, 252, 0.15);
-      line-height: 1;
-      margin-bottom: 8px;
-      letter-spacing: -3px;
-    }
-    .step h3 {
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--white);
-      margin-bottom: 12px;
-    }
-    .step p {
-      font-size: 15px;
-      color: rgba(255,255,255,0.6);
-      line-height: 1.65;
-    }
-    .step-tag {
-      display: inline-block;
-      margin-bottom: 12px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: #4ade80;
-    }
+    /* DIVIDER */
+    .phase-divider { border: none; border-top: 2px dashed var(--border); margin: 0 0 56px; }
 
-    /* ── PHOTO STRIP ── */
-    .photo-strip {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 4px;
-      height: 480px;
+    /* WAITLIST */
+    .waitlist-section {
+      background: var(--navy); color: white; text-align: center;
+      padding: clamp(48px, 8vw, 96px) 24px;
     }
-    .photo-strip-hero {
-      grid-template-columns: 3fr 1fr 1fr 1fr;
-      height: 500px;
-    }
+    .waitlist-section h2 { font-family: 'Playfair Display', serif; font-size: clamp(26px, 4vw, 38px); font-weight: 800; margin-bottom: 14px; }
+    .waitlist-section p { font-size: 16px; color: rgba(255,255,255,0.6); max-width: 480px; margin: 0 auto 36px; line-height: 1.7; }
+    .waitlist-form { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; max-width: 480px; margin: 0 auto; }
+    .waitlist-form input { flex: 1; min-width: 220px; padding: 14px 20px; border-radius: 50px; border: none; font-size: 15px; outline: none; }
+    .waitlist-form button { background: #4ade80; color: var(--navy); font-weight: 800; font-size: 15px; padding: 14px 28px; border-radius: 50px; border: none; cursor: pointer; white-space: nowrap; }
+    .waitlist-note { font-size: 13px; color: rgba(255,255,255,0.35); margin-top: 16px; }
+
+    /* FOOTER */
+    footer { background: #060f1a; color: rgba(255,255,255,0.4); text-align: center; padding: 28px 24px; font-size: 13px; }
+    footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
+
     @media (max-width: 640px) {
-      .photo-strip { grid-template-columns: 1fr; height: auto; }
-      .photo-strip-hero { grid-template-columns: 1fr !important; height: 320px !important; }
-      .photo-strip-item:not(:first-child) { display: none; }
-    }
-    @media (max-width: 900px) {
-      .photo-strip-hero { grid-template-columns: 2fr 1fr; }
-      .photo-strip-hero .photo-strip-item:nth-child(n+3) { display: none; }
-    }
-    .photo-strip-item {
-      overflow: hidden;
-      position: relative;
-    }
-    .photo-strip-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-    .photo-strip-item:hover img { transform: scale(1.04); }
-
-    /* ── TESTIMONIAL ── */
-    .testimonial {
-      position: relative;
-      overflow: hidden;
-      padding: 100px 24px;
-    }
-    .testimonial::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: url('https://images.unsplash.com/photo-1622826910427-4973196186bf?w=1600&auto=format&fit=crop&q=80');
-      background-size: cover;
-      background-position: center;
-      filter: brightness(0.3);
-    }
-    .testimonial .container { position: relative; z-index: 1; text-align: center; }
-    .testimonial-quote {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(22px, 3.5vw, 36px);
-      font-weight: 700;
-      color: var(--white);
-      line-height: 1.4;
-      max-width: 720px;
-      margin: 0 auto 32px;
-    }
-    .testimonial-quote::before { content: '\201C'; }
-    .testimonial-quote::after { content: '\201D'; }
-    .testimonial-author {
-      font-size: 15px;
-      color: rgba(255,255,255,0.6);
-      font-weight: 500;
-    }
-    .testimonial-author strong { color: rgba(255,255,255,0.9); }
-    .testimonial-stars {
-      font-size: 20px;
-      color: #fbbf24;
-      margin-bottom: 28px;
-    }
-
-    /* ── PRICING ── */
-    .pricing { background: var(--light); }
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-      margin-top: 64px;
-      align-items: start;
-    }
-    .pricing-card {
-      background: var(--white);
-      border: 2px solid var(--border);
-      border-radius: var(--radius);
-      padding: 36px;
-      position: relative;
-    }
-    .pricing-card.featured {
-      border-color: var(--blue);
-      box-shadow: 0 12px 48px rgba(15,76,129,0.14);
-    }
-    .pricing-badge {
-      position: absolute;
-      top: -14px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--blue);
-      color: var(--white);
-      font-size: 11px;
-      font-weight: 700;
-      padding: 4px 16px;
-      border-radius: 100px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-    .pricing-tier {
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: var(--blue-mid);
-      margin-bottom: 8px;
-    }
-    .pricing-desc { font-size: 14px; color: var(--mid); margin-bottom: 24px; }
-    .pricing-price {
-      font-size: 52px;
-      font-weight: 800;
-      color: var(--dark);
-      letter-spacing: -2px;
-      line-height: 1;
-      margin-bottom: 4px;
-    }
-    .pricing-price span { font-size: 20px; font-weight: 500; color: var(--mid); letter-spacing: 0; }
-    .pricing-note { font-size: 13px; color: var(--mid); margin-bottom: 28px; }
-    .pricing-divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
-    .pricing-features { list-style: none; }
-    .pricing-features li {
-      font-size: 15px;
-      color: var(--mid);
-      padding: 8px 0;
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-    }
-    .pricing-features li::before {
-      content: '✓';
-      color: var(--green);
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-    .pricing-features li.no { color: #94a3b8; }
-    .pricing-features li.no::before { content: '–'; color: #cbd5e1; }
-    .btn-outline {
-      display: block;
-      width: 100%;
-      text-align: center;
-      margin-top: 32px;
-      padding: 14px;
-      border-radius: 10px;
-      border: 2px solid var(--blue);
-      color: var(--blue);
-      font-weight: 700;
-      font-size: 15px;
-      font-family: inherit;
-      text-decoration: none;
-      cursor: pointer;
-      background: transparent;
-      transition: background 0.2s, color 0.2s;
-    }
-    .btn-outline:hover { background: var(--blue); color: var(--white); }
-    .btn-filled {
-      display: block;
-      width: 100%;
-      text-align: center;
-      margin-top: 32px;
-      padding: 14px;
-      border-radius: 10px;
-      border: 2px solid var(--blue);
-      background: var(--blue);
-      color: var(--white);
-      font-weight: 700;
-      font-size: 15px;
-      font-family: inherit;
-      text-decoration: none;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .btn-filled:hover { background: var(--blue-mid); }
-    .pricing-footer {
-      text-align: center;
-      margin-top: 48px;
-      font-size: 14px;
-      color: var(--mid);
-    }
-    .pricing-footer a { color: var(--blue); }
-
-    /* ── CTA ── */
-    .cta {
-      position: relative;
-      overflow: hidden;
-      padding: 120px 24px;
-      text-align: center;
-    }
-    .cta::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: url('https://images.unsplash.com/photo-1598089881449-684399a0a6e4?w=1600&auto=format&fit=crop&q=80');
-      background-size: cover;
-      background-position: center;
-      filter: brightness(0.35);
-    }
-    .cta .container { position: relative; z-index: 1; }
-    .cta .section-title { color: var(--white); max-width: 640px; margin-left: auto; margin-right: auto; }
-    .cta .section-sub { color: rgba(255,255,255,0.68); margin: 0 auto 48px; }
-    .cta-form {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      flex-wrap: wrap;
-      max-width: 500px;
-      margin: 0 auto 20px;
-    }
-    .cta-form input {
-      flex: 1;
-      min-width: 240px;
-      padding: 17px 20px;
-      border-radius: 10px;
-      border: 2px solid rgba(255,255,255,0.2);
-      background: rgba(255,255,255,0.1);
-      color: var(--white);
-      font-size: 16px;
-      font-family: inherit;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-    .cta-form input::placeholder { color: rgba(255,255,255,0.4); }
-    .cta-form input:focus { border-color: rgba(255,255,255,0.55); background: rgba(255,255,255,0.15); }
-    .cta-note { font-size: 13px; color: rgba(255,255,255,0.4); }
-    .cta-success {
-      display: none;
-      background: rgba(74,222,128,0.15);
-      border: 1px solid rgba(74,222,128,0.4);
-      color: #4ade80;
-      padding: 14px 24px;
-      border-radius: 10px;
-      font-weight: 600;
-      font-size: 15px;
-      margin: 0 auto;
-      max-width: 400px;
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      background: var(--navy);
-      color: rgba(255,255,255,0.5);
-      padding: 40px 24px;
-      text-align: center;
-      font-size: 14px;
-    }
-    .footer-inner { max-width: 1140px; margin: 0 auto; }
-    .footer-logo {
-      font-family: 'Raleway', sans-serif;
-      font-size: 18px;
-      font-weight: 900;
-      color: var(--white);
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-    .footer-logo span { color: #7dd3fc; }
-    .footer-links {
-      display: flex;
-      gap: 24px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin: 16px 0;
-    }
-    .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13px; }
-    .footer-links a:hover { color: rgba(255,255,255,0.9); }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      .catch-history-grid, .knowledge-hub-grid, .fish-legal-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
-      .promotions-grid { grid-template-columns: 1fr !important; }
-    }
-    @media (max-width: 640px) {
-      section { padding: 72px 20px; }
-      .hero { padding: 100px 20px 60px; }
-      .features-hero { height: 260px; }
-      .features-hero-overlay { padding: 28px; }
+      nav { padding: 16px 20px; }
+      .feature-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-  <div class="nav-inner">
-    <a href="#" class="logo">Keep<span>Net</span></a>
-    <a href="#waitlist" class="nav-cta">Join the Waitlist</a>
-  </div>
+  <a href="/" class="nav-logo">Keep<span>Net</span></a>
+  <a href="/#waitlist" class="nav-cta">Join Waitlist</a>
 </nav>
 
 <!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-bg"></div>
-  <div class="hero-content">
-    <div class="hero-badge">Now accepting founding members</div>
-    <h1>Run your fishery.<br><em>Not paperwork.</em></h1>
-    <p class="hero-sub">The only platform built end-to-end for commercial coarse and carp fisheries — from online booking to QR scan to catch report. One flat monthly fee. No percentage cuts, ever.</p>
-    <form class="hero-form" id="hero-form" onsubmit="handleSignup(event, 'hero')">
-      <input type="email" id="hero-email" placeholder="Enter your email address" required />
-      <button type="submit" class="btn-primary">Join the Waitlist</button>
-    </form>
-    <div class="hero-success" id="hero-success">✓ You're on the list! We'll be in touch soon.</div>
-    <p class="hero-note">From £29/month flat · No per-booking fees, ever · Free during beta</p>
-  </div>
-  <div class="hero-scroll">
-    <span>Scroll</span>
-    <div class="scroll-line"></div>
-  </div>
+<section class="hero">
+  <div class="hero-label">Product Roadmap</div>
+  <h1>We're building this<br><em>with fishery owners.</em></h1>
+  <p>KeepNet is in early access. Here's what's live, what we're building right now, and what's coming next. Founding members get direct input into the order.</p>
+  <a href="/#waitlist" style="display:inline-block;background:#4ade80;color:#0a2e52;font-weight:800;font-size:16px;padding:16px 40px;border-radius:50px;text-decoration:none;">Get early access</a>
+  <p class="hero-note">Free during beta · Founding member rate locked in</p>
 </section>
 
-<!-- TRUST STRIP -->
-<div class="trust-strip">
-  <strong>Built for commercial fisheries</strong> &nbsp;·&nbsp; <span style="color:#4ade80;font-weight:700;">£59/month flat — no per-booking fees, ever</span> &nbsp;·&nbsp; Running in early access Summer 2026
-</div>
+<!-- TIMELINE -->
+<section class="timeline-section">
 
-<!-- SWITCH VALUE -->
-<section style="background: var(--navy); color: white; padding: clamp(56px, 8vw, 96px) 0;">
-  <div class="container">
-    <div class="section-label" style="color: #4ade80;">Why fishery owners switch</div>
-    <h2 style="font-family: 'Playfair Display', serif; font-size: clamp(26px, 4vw, 44px); font-weight: 800; color: white; margin: 0 0 16px; line-height: 1.2; max-width: 700px;">
-      Other platforms take a percentage of every booking.<br>KeepNet charges a flat monthly fee.
-    </h2>
-    <p style="font-size: 16px; color: rgba(255,255,255,0.6); max-width: 580px; margin: 0 0 56px; line-height: 1.75;">
-      At £10,000/month in bookings, the difference between KeepNet and the competition is over £5,000 a year. Before you've even looked at the features.
-    </p>
-
-    <!-- Pricing comparison -->
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 64px; max-width: 740px;">
-      <div style="background: rgba(74,222,128,0.08); border: 2px solid #4ade80; border-radius: 18px; padding: 28px 20px; text-align: center;">
-        <div style="font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: #4ade80; margin-bottom: 14px;">KeepNet</div>
-        <div style="font-size: 46px; font-weight: 800; color: white; letter-spacing: -2px; line-height: 1;">£59</div>
-        <div style="font-size: 12px; color: rgba(255,255,255,0.45); margin: 6px 0 16px;">per month, flat</div>
-        <div style="background: rgba(74,222,128,0.15); border-radius: 8px; padding: 8px; font-size: 13px; color: #4ade80; font-weight: 700;">£708/year</div>
-      </div>
-      <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 28px 20px; text-align: center;">
-        <div style="font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 14px;">Clubmate</div>
-        <div style="font-size: 40px; font-weight: 800; color: rgba(255,255,255,0.5); letter-spacing: -2px; line-height: 1;">£270–350</div>
-        <div style="font-size: 12px; color: rgba(255,255,255,0.3); margin: 6px 0 16px;">at £10k/mo (2.5% + 20p/ticket)</div>
-        <div style="background: rgba(248,113,113,0.1); border-radius: 8px; padding: 8px; font-size: 13px; color: #f87171; font-weight: 700;">£3,240–4,200/year</div>
-      </div>
-      <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; padding: 28px 20px; text-align: center;">
-        <div style="font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 14px;">ClubNest</div>
-        <div style="font-size: 46px; font-weight: 800; color: rgba(255,255,255,0.5); letter-spacing: -2px; line-height: 1;">£500</div>
-        <div style="font-size: 12px; color: rgba(255,255,255,0.3); margin: 6px 0 16px;">at £10k/mo (5% flat)</div>
-        <div style="background: rgba(248,113,113,0.1); border-radius: 8px; padding: 8px; font-size: 13px; color: #f87171; font-weight: 700;">£6,000/year</div>
-      </div>
+  <!-- PHASE 1: NOW -->
+  <div class="phase">
+    <div class="phase-header">
+      <span class="phase-tag now">Now — Beta</span>
+      <h2 class="phase-title">The core platform</h2>
     </div>
-
-    <!-- Three unique claims -->
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; padding-top: 48px; border-top: 1px solid rgba(255,255,255,0.08);">
-      <div>
-        <div style="font-size: 11px; font-weight: 800; color: #4ade80; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px;">Only KeepNet</div>
-        <h3 style="font-size: 17px; font-weight: 700; color: white; margin-bottom: 10px; line-height: 1.35;">Flat fee — not a percentage</h3>
-        <p style="font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.7; margin: 0;">Every competitor charges a cut of your bookings. KeepNet doesn't. £59/month in quiet January and £59/month in busy August. The more your fishery earns, the wider the gap.</p>
-      </div>
-      <div>
-        <div style="font-size: 11px; font-weight: 800; color: #4ade80; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px;">Only KeepNet</div>
-        <h3 style="font-size: 17px; font-weight: 700; color: white; margin-bottom: 10px; line-height: 1.35;">Automated catch report prompts</h3>
-        <p style="font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.7; margin: 0;">At 3pm after every session, KeepNet emails the angler automatically. Species, weights, photos. No chasing, no forms. Reports build without you lifting a finger.</p>
-      </div>
-      <div>
-        <div style="font-size: 11px; font-weight: 800; color: #4ade80; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px;">Only KeepNet</div>
-        <h3 style="font-size: 17px; font-weight: 700; color: white; margin-bottom: 10px; line-height: 1.35;">The complete loop</h3>
-        <p style="font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.7; margin: 0;">Booking → payment → QR ticket → bankside scan → automated catch prompt → searchable history → next booking. Every feature connects. No other platform closes the full cycle.</p>
-      </div>
-    </div>
-
-    <div style="margin-top: 56px;">
-      <a href="#waitlist" style="display: inline-block; background: #4ade80; color: #0a2e52; font-weight: 800; font-size: 16px; padding: 18px 44px; border-radius: 50px; text-decoration: none; letter-spacing: 0.2px;">Join the waitlist — free during beta</a>
-      <p style="margin: 16px 0 0; font-size: 13px; color: rgba(255,255,255,0.35);">No credit card required · Founding member rate locked in · Cancel anytime</p>
-    </div>
-  </div>
-</section>
-
-<!-- PROBLEM -->
-<section class="problem">
-  <div class="container">
-    <div class="problem-inner">
-      <div class="problem-image">
-        <img
-          src="https://images.pexels.com/photos/30097200/pexels-photo-30097200.jpeg?auto=compress&cs=tinysrgb&w=800&h=800&dpr=1"
-          alt="Stourhead lake, Wiltshire — English countryside fishery"
-          loading="lazy"
-        />
-        <div class="problem-image-badge">
-          <span>3,000+</span>
-          UK commercial fisheries still taking bookings by phone, cash & WhatsApp
-        </div>
-      </div>
-      <div>
-        <div class="section-label">The Problem</div>
-        <h2 class="section-title">Running a fishery is hard work. The admin makes it harder.</h2>
-        <p class="section-sub">Most commercial fishery owners are managing bookings by phone, handling cash at the bankside, and tracking customers in spreadsheets. There's a better way.</p>
-        <ul class="problem-list">
-          <li>
-            <span class="icon">📋</span>
-            <div>
-              <strong>Booking chaos</strong>
-              <p>WhatsApp, phone calls, Facebook DMs, and no-shows. Your pegs fill up by word of mouth and you have no visibility of what's booked until someone turns up.</p>
-            </div>
-          </li>
-          <li>
-            <span class="icon">💵</span>
-            <div>
-              <strong>Cash at the bankside</strong>
-              <p>Cash handling is a security risk, an HMRC headache, and a time drain. Every transaction that moves online is time back in your day.</p>
-            </div>
-          </li>
-          <li>
-            <span class="icon">🎣</span>
-            <div>
-              <strong>No catch history</strong>
-              <p>Anglers decide where to fish based on catches. Without a record, you can't show them what your waters produce — and you lose bookings to venues that can.</p>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FEATURES -->
-<section id="features">
-  <div class="container">
-    <div style="text-align:center; margin-bottom: 20px;">
-      <div class="section-label">Features</div>
-    </div>
-    <div style="text-align:center; margin-bottom: 64px;">
-      <h2 class="section-title">Everything a commercial fishery needs,<br>in one place</h2>
-      <p class="section-sub" style="margin: 0 auto;">Bookings, payments, QR scanning, customer records, waiting lists and catch reports — built for the way fishery owners actually work.</p>
-    </div>
-
-    <div class="features-hero">
-      <img
-        src="https://images.unsplash.com/photo-1596796571148-77b6e70dd6b6?w=1400&auto=format&fit=crop&q=80"
-        alt="Angler fishing at golden hour"
-        loading="lazy"
-      />
-      <div class="features-hero-overlay">
-        <div class="features-hero-text">
-          <h3>From booking to bankside —<br>all managed from your phone</h3>
-          <p>KeepNet works on any device. Run your fishery from the office, the car, or the bank.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="features-grid">
-      <div class="feature-card">
+    <div class="feature-grid">
+      <div class="feature-card done">
         <div class="feature-icon">📅</div>
         <h3>Online Bookings</h3>
-        <p>Live peg availability, online payment, and instant confirmations. No more phone tag, WhatsApp chaos, or double-bookings.</p>
+        <p>Live peg availability, online payment, and instant confirmations. No phone tag, no double-bookings.</p>
       </div>
-      <div class="feature-card">
+      <div class="feature-card done">
         <div class="feature-icon">💳</div>
-        <h3>Payments & Day Tickets</h3>
-        <p>Card, Apple Pay and Google Pay. Stripe-powered and passed through at cost — no KeepNet markup, ever. Less cash, less risk, less admin.</p>
+        <h3>Stripe Payments</h3>
+        <p>Card, Apple Pay and Google Pay. Passed through at cost — no KeepNet markup, ever.</p>
       </div>
-      <div class="feature-card" style="border-color: var(--blue-mid); background: linear-gradient(135deg, #f0f7ff 0%, #ffffff 100%);">
+      <div class="feature-card done">
         <div class="feature-icon">📲</div>
         <h3>QR Ticket Scanning</h3>
-        <p>Anglers book online and receive a QR ticket. Your bailiff scans it at the bankside to verify — no cash, no paper, no arguments.</p>
-        <p style="margin-top: 14px; font-size: 13px; font-weight: 700; color: var(--blue-mid); letter-spacing: 0.3px;">Included in every plan. No extra charge, no separate app.</p>
+        <p>Anglers receive a unique QR ticket by email. Bailiffs scan at the bankside from any smartphone.</p>
       </div>
-      <div class="feature-card">
+      <div class="feature-card done">
         <div class="feature-icon">👥</div>
-        <h3>Customer Records & Waiting Lists</h3>
-        <p>Simple records for every angler who books. Manage waiting lists for popular pegs and sessions — and fill cancellations automatically.</p>
+        <h3>Customer Records</h3>
+        <p>A simple record for every angler who books — history, visits, notes.</p>
       </div>
-      <div class="feature-card">
+      <div class="feature-card done">
         <div class="feature-icon">🎣</div>
-        <h3>Catch Reports & History</h3>
-        <p>Anglers log catches with species, weight, and photos. Searchable catch history by peg and month drives future bookings — your fishery sells itself.</p>
+        <h3>Catch Reports</h3>
+        <p>Automated 3pm prompt after every session. Species, weight, photos. Builds your searchable history.</p>
       </div>
-      <div class="feature-card">
+      <div class="feature-card done">
         <div class="feature-icon">📊</div>
         <h3>Owner Dashboard</h3>
-        <p>See all bookings, revenue, and upcoming sessions in one view. Know what's happening on your water before you get to the car park.</p>
+        <p>All bookings, revenue and upcoming sessions in one view before you leave the car park.</p>
       </div>
     </div>
   </div>
+
+  <hr class="phase-divider" />
+
+  <!-- PHASE 2: NEXT -->
+  <div class="phase">
+    <div class="phase-header">
+      <span class="phase-tag next">Next — Summer 2026</span>
+      <h2 class="phase-title">Making it smarter</h2>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card building">
+        <div class="feature-icon">🗺️</div>
+        <h3>Interactive Peg Maps</h3>
+        <p>Anglers see and choose their exact peg on a map when booking. No confusion, no disputes at the bankside.</p>
+      </div>
+      <div class="feature-card building">
+        <div class="feature-icon">📋</div>
+        <h3>Waiting Lists</h3>
+        <p>Auto-fill cancellations from a waiting list. Popular pegs fill instantly — you do nothing.</p>
+      </div>
+      <div class="feature-card building">
+        <div class="feature-icon">📱</div>
+        <h3>Bailiff App</h3>
+        <p>A dedicated mobile view for bailiffs — scan queue, session list, flag issues, log incidents.</p>
+      </div>
+      <div class="feature-card planned">
+        <div class="feature-icon">🏆</div>
+        <h3>Match Management</h3>
+        <p>Draw pegs, run results, publish leaderboards. For fisheries that run regular matches and competitions.</p>
+      </div>
+      <div class="feature-card planned">
+        <div class="feature-icon">💬</div>
+        <h3>Angler Messaging</h3>
+        <p>Send session reminders, weather alerts, and fishery updates directly to booked anglers.</p>
+      </div>
+      <div class="feature-card planned">
+        <div class="feature-icon">🎁</div>
+        <h3>Membership Tiers</h3>
+        <p>Season tickets, club memberships and syndicate access — managed and renewed automatically.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="phase-divider" />
+
+  <!-- PHASE 3: LATER -->
+  <div class="phase">
+    <div class="phase-header">
+      <span class="phase-tag later">Later — 2027</span>
+      <h2 class="phase-title">The bigger picture</h2>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card planned">
+        <div class="feature-icon">🔍</div>
+        <h3>Angler Discovery</h3>
+        <p>Anglers find your fishery through KeepNet's public catch map — searchable by species, region, and peg record.</p>
+      </div>
+      <div class="feature-card planned">
+        <div class="feature-icon">⚖️</div>
+        <h3>Legal & Compliance Tools</h3>
+        <p>Rod licence checks, pollution incident logging, and access to specialist fishery legal support.</p>
+      </div>
+      <div class="feature-card planned">
+        <div class="feature-icon">🎣</div>
+        <h3>Tackle & Bait Partnerships</h3>
+        <p>Exclusive deals for KeepNet subscribers from leading UK carp and coarse brands.</p>
+      </div>
+      <div class="feature-card planned">
+        <div class="feature-icon">📈</div>
+        <h3>Revenue Analytics</h3>
+        <p>Seasonal trends, peg performance, and booking patterns — so you know where to invest next season.</p>
+      </div>
+    </div>
+  </div>
+
 </section>
 
-<!-- PHOTO STRIP -->
-<div class="photo-strip photo-strip-hero">
-  <div class="photo-strip-item" style="position:relative;">
-    <img src="https://images.pexels.com/photos/35193589/pexels-photo-35193589.jpeg?auto=compress&cs=tinysrgb&w=1200&h=800&dpr=1" alt="Misty English lake at dawn with oak and willow trees" loading="lazy" />
-    <div style="position:absolute; inset:0; background: linear-gradient(to right, rgba(10,46,82,0.75) 0%, rgba(10,46,82,0.15) 70%); display:flex; align-items:flex-end; padding: clamp(20px, 5vw, 48px);">
-      <div style="color:white; max-width: 100%;">
-        <div style="font-family: 'Playfair Display', serif; font-size: clamp(20px, 4vw, 32px); font-weight: 800; line-height: 1.2; margin-bottom: 10px;">Built for UK fisheries.<br>Nowhere else.</div>
-        <div style="font-size: clamp(13px, 2vw, 15px); color: rgba(255,255,255,0.8); line-height: 1.6;">Early morning. Misty water. That's what we're protecting.</div>
-      </div>
-    </div>
-  </div>
-  <div class="photo-strip-item">
-    <img src="https://images.pexels.com/photos/5538150/pexels-photo-5538150.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&dpr=1" alt="Three anglers in green waterproofs with a carp on the unhooking mat" loading="lazy" />
-  </div>
-  <div class="photo-strip-item">
-    <img src="https://images.pexels.com/photos/5537773/pexels-photo-5537773.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&dpr=1" alt="Angler releasing a common carp in waders and beanie" loading="lazy" />
-  </div>
-  <div class="photo-strip-item">
-    <img src="https://images.pexels.com/photos/14264861/pexels-photo-14264861.jpeg?auto=compress&cs=tinysrgb&w=600&h=800&dpr=1" alt="Golden common carp being returned to the water" loading="lazy" />
-  </div>
-</div>
-
-<!-- CATCH HISTORY FEATURE HIGHLIGHT -->
-<section style="background: var(--navy); color: var(--white); padding: 80px 0;">
-  <div class="container catch-history-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;">
-    <div>
-      <div class="section-label" style="color: #7dd3fc;">Catch Reports</div>
-      <h2 class="section-title" style="color: var(--white); margin-bottom: 20px;">Your catch history sells your fishery for you</h2>
-      <p style="color: #cbd5e1; font-size: 17px; line-height: 1.7; margin-bottom: 24px;">When an angler finishes a session, KeepNet emails them at 3pm asking for a catch report. Species, weights, photos, conditions. Those reports build into a searchable public record — so the next angler deciding where to fish on a Saturday can look up your best peg in October, going back 10 years.</p>
-      <p style="color: #cbd5e1; font-size: 17px; line-height: 1.7;">It gets them excited. It builds trust. It books the peg.</p>
-    </div>
-    <div style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); padding: 32px;">
-      <div style="margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1);">
-        <div style="font-weight: 700; color: var(--white); margin-bottom: 4px;">🎣 Lake 2 — Peg 7 — October</div>
-        <div style="color: #94a3b8; font-size: 14px;">Reported by Mark T. · 3 sessions this month</div>
-        <div style="color: #7dd3fc; margin-top: 8px; font-size: 15px;">Common Carp 28lb 4oz · Mirror Carp 19lb · Tench 6lb 8oz</div>
-      </div>
-      <div style="margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1);">
-        <div style="font-weight: 700; color: var(--white); margin-bottom: 4px;">🎣 Lake 2 — Peg 7 — October (last year)</div>
-        <div style="color: #94a3b8; font-size: 14px;">Reported by Dave S. · 2 sessions</div>
-        <div style="color: #7dd3fc; margin-top: 8px; font-size: 15px;">Common Carp 31lb 2oz · Bream 9lb 4oz</div>
-      </div>
-      <div style="color: #64748b; font-size: 13px; text-align: center;">Showing 2 of 47 historic reports for this peg</div>
-    </div>
-  </div>
+<!-- WAITLIST -->
+<section class="waitlist-section" id="waitlist">
+  <h2>Shape what gets built next.</h2>
+  <p>Founding members get direct input into the roadmap. Tell us what your fishery needs most.</p>
+  <form class="waitlist-form" onsubmit="handleSubmit(event)">
+    <input type="email" id="wl-email" placeholder="your@email.com" required />
+    <button type="submit">Join the waitlist</button>
+  </form>
+  <p id="wl-confirm" style="display:none;color:#4ade80;font-weight:600;margin-top:16px;">✓ You're on the list. We'll be in touch.</p>
+  <p class="waitlist-note">Free during beta · No credit card required · Unsubscribe anytime</p>
 </section>
 
-<!-- PARTNERSHIPS -->
-<section style="background: var(--navy); color: var(--white); padding: 80px 0;">
-  <div class="container" style="max-width: 760px; text-align: center;">
-    <div class="section-label" style="color: #7dd3fc; background: rgba(255,255,255,0.08);">Partnerships</div>
-    <h2 class="section-title" style="color: var(--white); margin-bottom: 20px;">Built for the UK fishing community</h2>
-    <p style="color: #cbd5e1; font-size: 17px; line-height: 1.7; margin-bottom: 40px;">We are exploring partnerships that could help fisheries and clubs access specialist support on legal, environmental, and fishery management issues — as well as exclusive member benefits from leading UK tackle and bait brands. Any formal member benefits will be announced once agreements are in place.</p>
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
-      <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); padding: 24px;">
-        <div style="font-size: 28px; margin-bottom: 12px;">⚖️</div>
-        <div style="font-weight: 600; color: white; margin-bottom: 6px; font-size: 15px;">Legal support</div>
-        <div style="color: #94a3b8; font-size: 13px; line-height: 1.5;">Exploring partnerships for specialist legal access on pollution, planning and water rights</div>
-      </div>
-      <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); padding: 24px;">
-        <div style="font-size: 28px; margin-bottom: 12px;">🏛️</div>
-        <div style="font-weight: 600; color: white; margin-bottom: 6px; font-size: 15px;">Industry bodies</div>
-        <div style="color: #94a3b8; font-size: 13px; line-height: 1.5;">Working towards relationships with UK angling bodies that benefit our subscribers</div>
-      </div>
-      <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); padding: 24px;">
-        <div style="font-size: 28px; margin-bottom: 12px;">🎣</div>
-        <div style="font-weight: 600; color: white; margin-bottom: 6px; font-size: 15px;">Tackle &amp; bait brands</div>
-        <div style="color: #94a3b8; font-size: 13px; line-height: 1.5;">In conversation with leading UK carp and coarse brands about exclusive member deals</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- CARP PHOTO STRIP -->
-<div class="photo-strip">
-  <div class="photo-strip-item">
-    <img src="https://images.pexels.com/photos/5537771/pexels-photo-5537771.jpeg?auto=compress&cs=tinysrgb&w=900&h=600&dpr=1" alt="Angler in beanie holding common carp amongst reeds" loading="lazy" />
-  </div>
-  <div class="photo-strip-item">
-    <img src="https://images.pexels.com/photos/5537866/pexels-photo-5537866.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&dpr=1" alt="Large mirror carp at water level being released" loading="lazy" />
-  </div>
-  <div class="photo-strip-item">
-    <img src="https://images.unsplash.com/photo-1541441056316-443fff347c40?w=600&auto=format&fit=crop&q=80" alt="Carp in clear water" loading="lazy" />
-  </div>
-</div>
-
-
-<!-- THE KEEPNET LOOP -->
-<section class="how" id="how-it-works">
-  <div class="container">
-    <div class="section-label">How It Works</div>
-    <h2 class="section-title">The KeepNet Loop</h2>
-    <p class="section-sub">Every feature feeds the next. No competitor connects the full cycle.</p>
-
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 64px;">
-
-      <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px 16px 0 0; padding: 32px 28px 24px; position: relative;">
-        <div style="font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 800; color: rgba(125,211,252,0.15); line-height: 1; margin-bottom: 8px; letter-spacing: -2px;">01</div>
-        <span style="font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #4ade80; display: block; margin-bottom: 10px;">Angler</span>
-        <h3 style="font-size: 18px; font-weight: 700; color: white; margin-bottom: 10px;">Books online & pays instantly</h3>
-        <p style="font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.6;">Live peg availability. Card, Apple Pay or Google Pay. No phone calls, no WhatsApp, no cash on arrival.</p>
-      </div>
-
-      <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px 16px 0 0; padding: 32px 28px 24px;">
-        <div style="font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 800; color: rgba(125,211,252,0.15); line-height: 1; margin-bottom: 8px; letter-spacing: -2px;">02</div>
-        <span style="font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #4ade80; display: block; margin-bottom: 10px;">KeepNet</span>
-        <h3 style="font-size: 18px; font-weight: 700; color: white; margin-bottom: 10px;">Sends a unique QR ticket by email</h3>
-        <p style="font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.6;">Confirmation is instant. The QR code is tied to the booking — it cannot be shared, reused or faked.</p>
-      </div>
-
-      <div style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px 16px 0 0; padding: 32px 28px 24px;">
-        <div style="font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 800; color: rgba(125,211,252,0.15); line-height: 1; margin-bottom: 8px; letter-spacing: -2px;">03</div>
-        <span style="font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #4ade80; display: block; margin-bottom: 10px;">Bailiff</span>
-        <h3 style="font-size: 18px; font-weight: 700; color: white; margin-bottom: 10px;">Scans at the bankside</h3>
-        <p style="font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.6;">Any smartphone. No app, no signal needed. Valid = green. Duplicate or unpaid = flagged. Cash leakage closed. <span style="color: #7dd3fc; font-weight: 600;">No other platform does this.</span></p>
-      </div>
-
-      <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 0 0 16px 16px; padding: 32px 28px 24px;">
-        <div style="font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 800; color: rgba(125,211,252,0.15); line-height: 1; margin-bottom: 8px; letter-spacing: -2px;">06</div>
-        <span style="font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #fbbf24; display: block; margin-bottom: 10px;">The loop closes</span>
-        <h3 style="font-size: 18px; font-weight: 700; color: white; margin-bottom: 10px;">Catch history drives the next booking</h3>
-        <p style="font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.6;">New anglers search your catch records before booking. After one season you have a marketing asset. After three, it's a moat.</p>
-      </div>
-
-      <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 0 0 16px 16px; padding: 32px 28px 24px;">
-        <div style="font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 800; color: rgba(125,211,252,0.15); line-height: 1; margin-bottom: 8px; letter-spacing: -2px;">05</div>
-        <span style="font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #4ade80; display: block; margin-bottom: 10px;">KeepNet</span>
-        <h3 style="font-size: 18px; font-weight: 700; color: white; margin-bottom: 10px;">Builds your searchable catch history</h3>
-        <p style="font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.6;">Reports accumulate by lake and peg. Visible to future anglers. Controlled by you. Gets more valuable every season.</p>
-      </div>
-
-      <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 0 0 16px 16px; padding: 32px 28px 24px;">
-        <div style="font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 800; color: rgba(125,211,252,0.15); line-height: 1; margin-bottom: 8px; letter-spacing: -2px;">04</div>
-        <span style="font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #4ade80; display: block; margin-bottom: 10px;">After the session</span>
-        <h3 style="font-size: 18px; font-weight: 700; color: white; margin-bottom: 10px;">Angler gets a catch report prompt</h3>
-        <p style="font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.6;">At 3pm, KeepNet emails them automatically. Species, weight, photos. No chasing. No forms. It just happens.</p>
-      </div>
-
-    </div>
-
-    <div style="margin-top: 48px; text-align: center; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 32px 40px;">
-      <p style="font-size: 17px; color: rgba(255,255,255,0.9); font-weight: 600; margin-bottom: 8px;">No other platform connects the full cycle.</p>
-      <p style="font-size: 15px; color: rgba(255,255,255,0.55); line-height: 1.65;">FishPal, Clubmate, ClubNest and iBookFishing handle bookings and payments. None of them automatically prompt catch reports after every session, build a searchable catch history that compounds season on season, or connect all of it into one closed loop on a flat monthly fee. That's KeepNet.</p>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIAL -->
-<section class="testimonial">
-  <div class="container">
-    <div class="testimonial-stars">★★★★★</div>
-    <p class="testimonial-quote">This is exactly what the UK fishing industry has been missing. Something built for us, not a generic booking tool shoehorned in.</p>
-    <p class="testimonial-author"><strong>Mark T.</strong> — Fishery owner, Cheshire (early access tester)</p>
-  </div>
-</section>
-
-<!-- PRICING -->
-<section class="pricing" id="pricing">
-  <div class="container">
-    <div style="text-align:center; margin-bottom: 20px;">
-      <div class="section-label">Pricing</div>
-    </div>
-    <div style="text-align:center; margin-bottom: 12px;">
-      <h2 class="section-title">Simple, flat monthly pricing</h2>
-      <p class="section-sub" style="margin: 0 auto;">No per-booking fees. No hidden charges. A one-off setup fee covers your onboarding — then a flat monthly rate, locked in for 12 months.</p>
-    </div>
-
-    <div style="background: var(--navy); border-radius: 16px; padding: 28px 36px; margin-bottom: 48px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px;">
-      <div>
-        <p style="font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #7dd3fc; margin-bottom: 6px;">At £10,000/month in bookings</p>
-        <p style="font-size: 15px; color: rgba(255,255,255,0.7); line-height: 1.6;">A fishery processing £10k/month pays Clubmate £270–£350 (2.5% + 20p/ticket) and ClubNest ~£500 (5%) in platform fees.<br>KeepNet costs <strong style="color: #4ade80;">£59 flat</strong> — a saving of up to £5,300 per year.</p>
-      </div>
-      <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-        <div style="text-align: center;">
-          <div style="font-size: 28px; font-weight: 800; color: #4ade80; letter-spacing: -1px;">£59</div>
-          <div style="font-size: 12px; color: rgba(255,255,255,0.5); font-weight: 600;">KeepNet</div>
-        </div>
-        <div style="text-align: center; opacity: 0.5;">
-          <div style="font-size: 22px; font-weight: 800; color: white; letter-spacing: -1px; text-decoration: line-through;">£270–350</div>
-          <div style="font-size: 12px; color: rgba(255,255,255,0.5); font-weight: 600;">Clubmate</div>
-        </div>
-        <div style="text-align: center; opacity: 0.5;">
-          <div style="font-size: 28px; font-weight: 800; color: white; letter-spacing: -1px; text-decoration: line-through;">£500</div>
-          <div style="font-size: 12px; color: rgba(255,255,255,0.5); font-weight: 600;">ClubNest</div>
-        </div>
-      </div>
-    </div>
-    <div class="pricing-grid">
-
-      <!-- Starter -->
-      <div class="pricing-card">
-        <div class="pricing-tier">Starter</div>
-        <div class="pricing-desc">Small day-ticket fisheries</div>
-        <div class="pricing-price">£29<span>/mo</span></div>
-        <div class="pricing-note">+ £149 one-off setup · Founding member rate</div>
-        <hr class="pricing-divider" />
-        <ul class="pricing-features">
-          <li>Up to 2 lakes / 30 pegs</li>
-          <li>Online bookings & payments</li>
-          <li>QR ticket scanning</li>
-          <li>Customer records</li>
-          <li>Waiting lists</li>
-          <li>Catch reports (basic)</li>
-          <li>Email onboarding support</li>
-        </ul>
-        <button onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})" class="btn-outline">Join Waitlist</button>
-      </div>
-
-      <!-- Pro -->
-      <div class="pricing-card featured">
-        <div class="pricing-badge">Recommended</div>
-        <div class="pricing-tier">Pro</div>
-        <div class="pricing-desc">Commercial fisheries</div>
-        <div class="pricing-price">£59<span>/mo</span></div>
-        <div class="pricing-note">+ £249 one-off setup · Founding member rate</div>
-        <hr class="pricing-divider" />
-        <ul class="pricing-features">
-          <li>Unlimited lakes & pegs</li>
-          <li>Online bookings & payments</li>
-          <li>QR ticket scanning</li>
-          <li>Full customer records</li>
-          <li>Waiting lists & cancellations</li>
-          <li>Catch reports & photos</li>
-          <li>Video call setup session</li>
-        </ul>
-        <button onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})" class="btn-filled">Join Waitlist</button>
-      </div>
-
-      <!-- Enterprise -->
-      <div class="pricing-card">
-        <div class="pricing-tier">Enterprise</div>
-        <div class="pricing-desc">Larger venues & associations</div>
-        <div class="pricing-price">£99<span>/mo</span></div>
-        <div class="pricing-note">+ £399 one-off setup · Founding member rate</div>
-        <hr class="pricing-divider" />
-        <ul class="pricing-features">
-          <li>Everything in Pro</li>
-          <li>Multi-venue management</li>
-          <li>Advanced reporting</li>
-          <li>Committee roles & permissions</li>
-          <li>Priority phone support</li>
-          <li>Dedicated setup session</li>
-          <li>Annual billing option (save 10%)</li>
-        </ul>
-        <button onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})" class="btn-outline">Join Waitlist</button>
-      </div>
-
-    </div>
-    <p class="pricing-footer">All prices exclude VAT. Stripe payment processing (1.4% + 20p for UK cards) is passed through at cost — no KeepNet markup, ever. Founding member rates locked in for 12 months. <a href="mailto:hello@keepnet.io">Questions? hello@keepnet.io</a></p>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="cta" id="waitlist">
-  <div class="container">
-    <div class="section-label" style="background:rgba(255,255,255,0.1);color:#7dd3fc;">Early Access</div>
-    <h2 class="section-title">Be first on the water.</h2>
-    <p class="section-sub">Join the waitlist for early access, a founding member rate, and direct input into what we build next.</p>
-    <form class="cta-form" id="cta-form" onsubmit="handleSignup(event, 'cta')">
-      <input type="email" id="cta-email" placeholder="Your email address" required />
-      <button type="submit" class="btn-primary">Join the Waitlist</button>
-    </form>
-    <div class="cta-success" id="cta-success">✓ You're on the list! We'll be in touch soon.</div>
-    <p class="cta-note">Free during beta · No credit card required · Unsubscribe anytime</p>
-  </div>
-</section>
-
-<!-- FOOTER -->
 <footer>
-  <div class="footer-inner">
-    <div class="footer-logo">Keep<span>Net</span></div>
-    <div class="footer-links">
-      <a href="mailto:hello@keepnet.io">hello@keepnet.io</a>
-      <a href="#features">Features</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#how-it-works">How It Works</a>
-    </div>
-    <p>© 2026 KeepNet · Bookings &amp; payments for commercial fisheries · keepnet.io</p>
-    <p style="margin-top:8px;font-size:12px;">Photos by <a href="https://unsplash.com" style="color:rgba(255,255,255,0.4)">Unsplash</a></p>
-  </div>
+  <p><a href="/">← Back to KeepNet</a> &nbsp;·&nbsp; © 2026 KeepNet &nbsp;·&nbsp; <a href="mailto:hello@keepnet.io">hello@keepnet.io</a></p>
 </footer>
 
-<!-- HIDDEN IFRAME FOR GOOGLE FORMS -->
-<iframe name="hidden_iframe" style="display:none"></iframe>
-
 <script>
-  const GF_ACTION = 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSfV7dY-6GWlG4LTBDf25zxj84BSOetxGtlG1LyCWqKxZHNuqw/formResponse';
-
-  function handleSignup(e, source) {
-    e.preventDefault();
-    const input = document.getElementById(source + '-email');
-    const success = document.getElementById(source + '-success');
-    const btn = e.target.querySelector('button');
-    const email = input.value.trim();
-    if (!email) return;
-
-    btn.textContent = 'Joining…';
-    btn.disabled = true;
-
-    const form = document.createElement('form');
-    form.action = GF_ACTION;
-    form.method = 'POST';
-    form.target = 'hidden_iframe';
-
-    const field = document.createElement('input');
-    field.type = 'hidden';
-    field.name = 'entry.589490959';
-    field.value = email;
-    form.appendChild(field);
-
-    document.body.appendChild(form);
-    form.submit();
-    document.body.removeChild(form);
-
-    // Show success — response goes to hidden iframe
-    input.style.display = 'none';
-    btn.style.display = 'none';
-    success.style.display = 'block';
-  }
+function handleSubmit(e) {
+  e.preventDefault();
+  document.querySelector('.waitlist-form').style.display = 'none';
+  document.getElementById('wl-confirm').style.display = 'block';
+}
 </script>
 
 </body>
