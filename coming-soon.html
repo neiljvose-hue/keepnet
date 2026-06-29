@@ -8,6 +8,19 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <meta name="robots" content="noindex, nofollow" />
+  <script>
+    (function() {
+      if (sessionStorage.getItem('kn_access') !== 'ok') {
+        var pw = prompt('Password:');
+        if (pw !== 'keepnet2026') {
+          document.write('<html><body style="font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;background:#0a2e52;color:white;font-size:18px;"><p>Access denied.</p></body></html>');
+          document.close(); throw new Error('denied');
+        }
+        sessionStorage.setItem('kn_access', 'ok');
+      }
+    })();
+  </script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
