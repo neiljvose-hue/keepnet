@@ -7,39 +7,59 @@
   <meta name="description" content="KeepNet — bookings and payments built for UK commercial fisheries. Coming soon." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Raleway:wght@700;800;900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { height: 100%; }
+
     body {
       font-family: 'Inter', sans-serif;
-      background: #0a2e52;
-      color: white;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
-      padding: 40px 24px;
       text-align: center;
+      padding: 40px 24px;
+      position: relative;
+      overflow: hidden;
+      color: white;
+    }
+
+    .bg {
+      position: fixed;
+      inset: 0;
+      background-image: url('https://images.pexels.com/photos/14249397/pexels-photo-14249397.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=1');
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.38);
+      z-index: 0;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      max-width: 520px;
+      width: 100%;
     }
 
     .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(36px, 8vw, 60px);
-      font-weight: 800;
-      letter-spacing: -1px;
+      font-family: 'Raleway', sans-serif;
+      font-size: clamp(32px, 7vw, 52px);
+      font-weight: 900;
+      letter-spacing: 6px;
+      text-transform: uppercase;
       color: white;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
-    .logo span { color: #4ade80; }
+    .logo span { color: #7dd3fc; }
 
     .tagline {
-      font-size: clamp(15px, 3vw, 19px);
-      color: rgba(255,255,255,0.55);
-      line-height: 1.7;
-      max-width: 420px;
-      margin-bottom: 48px;
+      font-size: clamp(15px, 2.5vw, 18px);
+      color: rgba(255,255,255,0.6);
+      line-height: 1.75;
+      max-width: 400px;
+      margin: 0 auto 44px;
     }
 
     .form {
@@ -47,75 +67,84 @@
       gap: 10px;
       flex-wrap: wrap;
       justify-content: center;
-      max-width: 440px;
       width: 100%;
     }
     .form input {
       flex: 1;
       min-width: 220px;
-      padding: 15px 22px;
-      border-radius: 50px;
-      border: 1px solid rgba(255,255,255,0.15);
-      background: rgba(255,255,255,0.08);
+      padding: 14px 22px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.1);
       color: white;
       font-size: 15px;
       font-family: 'Inter', sans-serif;
       outline: none;
+      backdrop-filter: blur(4px);
     }
-    .form input::placeholder { color: rgba(255,255,255,0.35); }
-    .form input:focus { border-color: rgba(255,255,255,0.35); background: rgba(255,255,255,0.12); }
+    .form input::placeholder { color: rgba(255,255,255,0.4); }
+    .form input:focus { border-color: rgba(255,255,255,0.45); background: rgba(255,255,255,0.15); }
+
     .form button {
-      background: #4ade80;
-      color: #0a2e52;
-      font-weight: 800;
+      background: #1a9e5c;
+      color: white;
+      font-weight: 700;
       font-size: 15px;
-      padding: 15px 28px;
-      border-radius: 50px;
+      padding: 14px 28px;
+      border-radius: 8px;
       border: none;
       cursor: pointer;
       font-family: 'Inter', sans-serif;
-      transition: opacity 0.15s;
+      transition: background 0.2s, transform 0.1s;
+      white-space: nowrap;
     }
-    .form button:hover { opacity: 0.9; }
+    .form button:hover { background: #16a34a; transform: translateY(-1px); }
 
     .confirm {
       display: none;
       color: #4ade80;
       font-weight: 600;
       font-size: 15px;
-      margin-top: 4px;
+      margin-top: 8px;
     }
 
     .note {
-      margin-top: 20px;
+      margin-top: 18px;
       font-size: 13px;
-      color: rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.3);
     }
 
     .footer {
       position: fixed;
       bottom: 24px;
+      left: 0; right: 0;
+      text-align: center;
       font-size: 12px;
-      color: rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.25);
+      z-index: 1;
     }
-    .footer a { color: rgba(255,255,255,0.3); text-decoration: none; }
+    .footer a { color: rgba(255,255,255,0.35); text-decoration: none; }
   </style>
 </head>
 <body>
 
-  <div class="logo">Keep<span>Net</span></div>
+  <div class="bg"></div>
 
-  <p class="tagline">
-    The bookings and payments platform built for UK commercial fisheries.<br>
-    Launching Summer 2026.
-  </p>
+  <div class="content">
+    <div class="logo">Keep<span>Net</span></div>
 
-  <form class="form" onsubmit="handleSubmit(event)">
-    <input type="email" id="email" placeholder="your@email.com" required />
-    <button type="submit">Get early access</button>
-  </form>
-  <p class="confirm" id="confirm">✓ You're on the list. We'll be in touch.</p>
-  <p class="note">No spam. Unsubscribe anytime.</p>
+    <p class="tagline">
+      The bookings and payments platform built for UK commercial fisheries.<br>
+      Launching Summer 2026.
+    </p>
+
+    <form class="form" onsubmit="handleSubmit(event)">
+      <input type="email" id="email" placeholder="your@email.com" required />
+      <button type="submit">Get early access</button>
+    </form>
+    <p class="confirm" id="confirm">✓ You're on the list. We'll be in touch.</p>
+    <p class="note">No spam. Unsubscribe anytime.</p>
+  </div>
 
   <p class="footer"><a href="mailto:hello@keepnet.io">hello@keepnet.io</a></p>
 
