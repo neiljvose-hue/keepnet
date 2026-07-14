@@ -3,20 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="noindex, nofollow" />
-  <title>KeepNet — Staging Preview</title>
-  <script>
-    (function() {
-      if (sessionStorage.getItem('kn_staging') !== 'ok') {
-        var pw = prompt('Staging password:');
-        if (pw !== 'keepnet2026') {
-          document.write('<html><body style="font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;background:#0a2e52;color:white;font-size:18px;"><p>Access denied.</p></body></html>');
-          document.close(); throw new Error('denied');
-        }
-        sessionStorage.setItem('kn_staging', 'ok');
-      }
-    })();
-  </script>
+  <title>KeepNet — Bookings &amp; management for commercial fisheries</title>
   <meta name="description" content="KeepNet is the simple bookings and payments platform built for commercial coarse and carp fisheries. Online bookings, QR tickets, catch reports — on one flat monthly fee." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
